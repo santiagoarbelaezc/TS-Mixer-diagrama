@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arquitectura TSMixer — Diagrama Dinámico e Interactivo</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ==========================================================================
+       RESET Y VARIABLES GLOBALES (100% AUTÓNOMO — ESTILOS Y ANIMACIONES RICHEST)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(226, 232, 240, 0.8) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(203, 213, 225, 0.6) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(241, 245, 249, 0.5) 0px, transparent 100%);
+      color: #1e293b;
+      padding: 24px 16px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Lienzo principal */
+    .diagram-canvas {
+      width: 100%;
+      max-width: 1140px;
+      background: #ffffff;
+      border-radius: 36px;
+      padding: 36px 32px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.09);
+      position: relative;
+    }
+
+    /* Encabezado */
+    .diagram-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #f1f5f9;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 21px;
+      box-shadow: 0 10px 20px -3px rgba(234, 88, 12, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-icon::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%
+      );
+      transform: rotate(25deg);
+      animation: iconShine 4s infinite linear;
+    }
+
+    @keyframes iconShine {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      20%, 100% { transform: translateX(100%) rotate(25deg); }
+    }
+
+    .brand-title {
+      font-size: 26px;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .badge-pill:hover {
+      transform: scale(1.04);
+    }
+    .badge-input { background: #fff1f2; color: #9f1239; border: 1px solid #fecdd3; }
+    .badge-output { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .badge-core { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+
+    /* Barra de herramientas y animación interactiva */
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 24px;
+    }
+
+    .nav-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      border: none;
+      background: transparent;
+      padding: 7px 13px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .nav-btn:hover {
+      color: #0f172a;
+      background: #f1f5f9;
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active {
+      background: #ffffff;
+      color: #2563eb;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.12);
+    }
+
+    /* Botón de animación de flujo */
+    .btn-simulate {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-simulate:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+    }
+    .btn-simulate:active {
+      transform: translateY(0);
+    }
+
+    /* Contenedor central del diagrama */
+    .diagram-body {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .diagram-stack {
+      min-width: 820px;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Filas del diagrama */
+    .diagram-row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      margin: 2px 0;
+      transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .col-side-left {
+      width: 27%;
+      padding-right: 18px;
+      text-align: right;
+    }
+
+    .col-center {
+      width: 46%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .col-side-right {
+      width: 27%;
+      padding-left: 18px;
+      text-align: left;
+    }
+
+    /* Cajas informativas laterales */
+    .annotation-box {
+      display: inline-block;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 7px 13px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: all 0.25s ease;
+    }
+    .annotation-box:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      transform: translateX(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .annotation-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #1e293b;
+      display: block;
+      line-height: 1.2;
+    }
+    .annotation-sub {
+      font-size: 9.5px;
+      color: #64748b;
+      font-weight: 500;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Nodos del diagrama y micro-animaciones */
+    .card-node {
+      width: 100%;
+      border-radius: 16px;
+      text-align: center;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      cursor: pointer;
+    }
+    .card-node:hover {
+      transform: translateY(-3px) scale(1.01);
+    }
+
+    /* 1. Salida: Verde Esmeralda con pulso de gradiente */
+    .node-output {
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      border: 2px solid #10b981;
+      color: #064e3b;
+      padding: 14px 16px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .node-output:hover {
+      box-shadow: 0 12px 28px rgba(16, 185, 129, 0.28);
+      border-color: #059669;
+    }
+    .node-output::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: sweepLight 5s infinite;
+    }
+
+    @keyframes sweepLight {
+      0% { left: -100%; }
+      30%, 100% { left: 200%; }
+    }
+
+    /* 2. Añadir y Normalizar: Amarillo/Ámbar suave */
+    .node-add-norm {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 1.5px solid #f59e0b;
+      color: #78350f;
+      padding: 9px 18px;
+      font-weight: 800;
+      font-size: 12.5px;
+      letter-spacing: 0.01em;
+      border-radius: 14px;
+      box-shadow: 0 3px 8px rgba(245, 158, 11, 0.08);
+    }
+    .node-add-norm:hover {
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.2);
+    }
+
+    /* 3. FFN de Proyección: Azul suave */
+    .node-ffn-wrapper {
+      background: #f0f9ff;
+      border: 1.5px solid #7dd3fc;
+      border-radius: 18px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.06);
+    }
+    .node-ffn-wrapper:hover {
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.15);
+      border-color: #38bdf8;
+    }
+    .node-ffn-feed {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      border: 1.5px solid #38bdf8;
+      color: #0369a1;
+      font-weight: 800;
+      font-size: 12.5px;
+      padding: 7px 12px;
+      border-radius: 12px;
+    }
+
+    /* 4. Auto-Atención Multi-Cabezal: Naranja/Ámbar */
+    .node-attention {
+      background: linear-gradient(135deg, #ffedd5 0%, #fed7aa 100%);
+      border: 2px solid #f97316;
+      color: #7c2d12;
+      padding: 12px 18px;
+      border-radius: 18px;
+      box-shadow: 0 6px 16px rgba(249, 115, 22, 0.12);
+    }
+    .node-attention:hover {
+      box-shadow: 0 10px 24px rgba(249, 115, 22, 0.25);
+      border-color: #ea580c;
+    }
+
+    /* 5. Capa Lineal (C, H): Lila/Púrpura suave */
+    .node-linear {
+      background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+      border: 2px solid #a855f7;
+      color: #581c87;
+      padding: 10px 18px;
+      font-weight: 900;
+      font-size: 13px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.1);
+    }
+    .node-linear:hover {
+      box-shadow: 0 8px 22px rgba(168, 85, 247, 0.22);
+    }
+
+    /* 6. Gran Contenedor Nx Bloques */
+    .outer-nx-container {
+      width: 100%;
+      border: 2px solid #0f172a;
+      border-radius: 26px;
+      background: #ffffff;
+      padding: 16px;
+      position: relative;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    .outer-nx-container:hover {
+      border-color: #2563eb;
+      box-shadow: 0 18px 45px rgba(37, 99, 235, 0.1);
+    }
+
+    /* Capa TSMixer Interior (Naranja principal) */
+    .inner-tsmixer-layer {
+      width: 100%;
+      background: linear-gradient(180deg, #fff7ed 0%, #ffedd5 100%);
+      border: 2.5px solid #fb923c;
+      border-radius: 20px;
+      padding: 14px;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .tsmixer-title-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #fed7aa;
+    }
+
+    /* Capa de Proyección Temporal */
+    .node-temporal-proj {
+      background: #f3e8ff;
+      border: 1.5px solid #c084fc;
+      color: #581c87;
+      border-radius: 14px;
+      padding: 9px 12px;
+      margin-bottom: 12px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .node-temporal-proj:hover {
+      background: #e9d5ff;
+      transform: translateY(-2px);
+    }
+
+    /* Rejilla de Dos Submódulos: Time-Mixing & Feature-Mixing */
+    .mixer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      position: relative;
+    }
+
+    /* Columna Time-Mixing (Azul) */
+    .box-time-mix {
+      background: linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1.5px solid #38bdf8;
+      border-radius: 16px;
+      padding: 12px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      transition: all 0.25s ease;
+    }
+    .box-time-mix:hover {
+      border-color: #0284c7;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.15);
+    }
+
+    /* Columna Feature-Mixing (Ámbar) */
+    .box-feature-mix {
+      background: linear-gradient(180deg, #fefce8 0%, #fef9c3 100%);
+      border: 1.5px solid #facc15;
+      border-radius: 16px;
+      padding: 12px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      transition: all 0.25s ease;
+    }
+    .box-feature-mix:hover {
+      border-color: #d97706;
+      box-shadow: 0 8px 20px rgba(217, 119, 6, 0.15);
+    }
+
+    /* Sub-bloques internos */
+    .sub-mlp-time {
+      background: #ffffff;
+      border: 1.5px solid #7dd3fc;
+      border-radius: 10px;
+      padding: 8px 6px;
+      margin-bottom: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.06);
+    }
+
+    .sub-mlp-feature {
+      background: #ffffff;
+      border: 1.5px solid #fde047;
+      border-radius: 10px;
+      padding: 8px 6px;
+      margin-top: 6px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(202, 138, 4, 0.06);
+    }
+
+    .sub-batchnorm {
+      background: #dcfce7;
+      border: 1.5px solid #4ade80;
+      color: #14532d;
+      border-radius: 10px;
+      padding: 6px 4px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    /* 7. Tensor X Histórico */
+    .node-tensor-x {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 2px solid #64748b;
+      border-radius: 16px;
+      padding: 10px 24px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(100, 116, 139, 0.08);
+    }
+    .node-tensor-x:hover {
+      border-color: #2563eb;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+    }
+
+    /* 8. Canales [C1 | C2 | ... | Ci | C] */
+    .channels-bar {
+      background: #ffe4e6;
+      border: 2px solid #f43f5e;
+      border-radius: 16px;
+      padding: 8px 10px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.8fr 1fr 1fr;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(244, 63, 94, 0.1);
+    }
+
+    .channel-cell {
+      background: #ffffff;
+      border: 1px solid #fecdd3;
+      border-radius: 8px;
+      padding: 5px 2px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 12px;
+      color: #9f1239;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease;
+    }
+    .channel-cell:hover {
+      transform: scale(1.08);
+      background: #fff1f2;
+    }
+
+    /* Matriz de Entrada y Flechas */
+    .matrix-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .grid-arrows {
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.8fr 1fr 1fr;
+      width: 100%;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+
+    .arrow-icon {
+      animation: floatUpDown 2s infinite ease-in-out;
+    }
+
+    @keyframes floatUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+
+    .grid-svg-card {
+      width: 100%;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      padding: 10px 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Puntos de telemetría animados en vivo */
+    .pulse-point {
+      animation: pulseGrow 2s infinite ease-in-out;
+      transform-origin: center;
+    }
+    .pulse-point-delayed {
+      animation: pulseGrow 2s infinite ease-in-out 0.8s;
+      transform-origin: center;
+    }
+
+    @keyframes pulseGrow {
+      0%, 100% { r: 3.5; opacity: 1; }
+      50% { r: 5; opacity: 0.75; }
+    }
+
+    /* Conectores y flechas verticales */
+    .vert-connector {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: -2px 0;
+      z-index: 10;
+    }
+
+    /* Animación continua de flujo en las conexiones */
+    @keyframes flowUp {
+      0% {
+        stroke-dashoffset: 24;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .flow-line {
+      stroke-dasharray: 6, 4;
+      animation: flowUp 1.2s linear infinite;
+    }
+
+    .flow-line-reverse {
+      stroke-dasharray: 6, 4;
+      animation: flowUp 1.2s linear infinite reverse;
+    }
+
+    /* Estado de simulación activa (Forward Pass) */
+    .simulating-active {
+      animation: haloPulse 1.8s infinite ease-in-out !important;
+      transform: scale(1.025) !important;
+      z-index: 25 !important;
+    }
+
+    @keyframes haloPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4), 0 10px 25px rgba(37, 99, 235, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(37, 99, 235, 0), 0 15px 35px rgba(37, 99, 235, 0.35);
+      }
+    }
+
+    /* Modal / Popover flotante de detalles */
+    .detail-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .detail-modal {
+      background: #ffffff;
+      border-radius: 24px;
+      max-width: 520px;
+      width: 100%;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      animation: modalPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.92); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Footer / Resumen técnico */
+    .diagram-footer {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid #f1f5f9;
+      width: 100%;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .footer-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 16px;
+      transition: all 0.25s ease;
+    }
+    .footer-card:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      border-color: #cbd5e1;
+    }
+
+    .footer-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .footer-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+    }
+
+    .footer-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .footer-desc {
+      font-size: 11.5px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .tensor-bar {
+      background: #f1f5f9;
+      border-radius: 16px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #475569;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Tooltip toast indicador */
+    .status-toast {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #2563eb;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      transition: opacity 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- LIENZO PRINCIPAL DEL DIAGRAMA                                      -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <main class="diagram-canvas">
+    
+    <!-- ENCABEZADO -->
+    <header class="diagram-header">
+      <div class="brand-group">
+        <div class="brand-icon">TS</div>
+        <div>
+          <h1 class="brand-title">Arquitectura TSMixer</h1>
+          <p class="brand-subtitle">Diseño interactivo con animación de flujo de datos y análisis de capas</p>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <span class="badge-pill badge-input">
+          <span style="width: 8px; height: 8px; background: #e11d48; border-radius: 50%;"></span>
+          Entrada: (Batch, T, C)
+        </span>
+        <span class="badge-pill badge-output">
+          <span style="width: 8px; height: 8px; background: #059669; border-radius: 50%;"></span>
+          Salida: (Batch, H, C)
+        </span>
+        <span class="badge-pill badge-core">
+          Nx Bloques
+        </span>
+      </div>
+    </header>
+
+    <!-- BARRA DE CONTROL Y ANIMACIONES -->
+    <div class="controls-bar">
+      <nav class="nav-toolbar">
+        <button class="nav-btn active" id="btn-all" onclick="filterDiagram('all')">Ver Todo</button>
+        <button class="nav-btn" id="btn-inputs" onclick="filterDiagram('inputs')">1. Entradas y Canales</button>
+        <button class="nav-btn" id="btn-core" onclick="filterDiagram('core')">2. Capa TSMixer (Nx)</button>
+        <button class="nav-btn" id="btn-head" onclick="filterDiagram('head')">3. Proyección & Atención</button>
+        <button class="nav-btn" id="btn-output" onclick="filterDiagram('output')">4. Salidas</button>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span id="toast-status" class="status-toast" style="display: none;">
+          <span style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%;"></span>
+          <span id="toast-text">Simulando flujo...</span>
+        </span>
+        
+        <button class="btn-simulate" id="btn-simulate" onclick="toggleDataStream()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span id="simulate-label">Simular Flujo (Forward Pass)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- CUERPO DEL DIAGRAMA -->
+    <div class="diagram-body">
+      <div class="diagram-stack">
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 7: SALIDAS PREDICHAS (VERDE)                            -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-output" onclick="showInfo('Salidas de Series Temporales Multivariantes', 'Pronóstico final emitido directamente al horizonte futuro. Contiene las predicciones simultáneas para las C series temporales a lo largo de H pasos de tiempo.', 'Ỹ ∈ ℝ^(H × C)', '(Batch, H, C)')">
+          <!-- Columna Izquierda -->
+          <div class="col-side-left">
+            <div class="annotation-box">
+              <span class="annotation-title font-mono">Output Shape (Batch, H, C)</span>
+              <span class="annotation-sub">Salida de valor directo</span>
+            </div>
+          </div>
+
+          <!-- Columna Central: Salida -->
+          <div class="col-center">
+            <div class="card-node node-output" id="node-output-card">
+              <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 2px;">
+                Series Temporales Predichas por TSMixer
+              </span>
+              <div style="font-size: 19px; font-weight: 900; font-family: 'JetBrains Mono', monospace; margin: 3px 0;">
+                Ỹ ∈ ℝ<sup>H × C</sup>
+              </div>
+              <div style="background: rgba(255,255,255,0.92); border: 1px solid #6ee7b7; border-radius: 12px; padding: 6px 16px; display: inline-block; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+                <span style="font-size: 13px; font-weight: 900; color: #064e3b; display: block;">
+                  Salidas de Series Temporales Multivariantes
+                </span>
+                <span style="font-size: 11px; font-weight: 700; color: #047857;">
+                  (H pasos predichos)
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="col-side-right">
+            <span class="badge-pill badge-output">
+              ✓ H Pasos hacia el futuro
+            </span>
+          </div>
+        </div>
+
+        <!-- Conector 7 -> 6 con flujo animado -->
+        <div class="vert-connector">
+          <svg width="32" height="30" viewBox="0 0 32 30" fill="none">
+            <line x1="16" y1="30" x2="16" y2="4" stroke="#059669" stroke-width="2" class="flow-line-reverse"/>
+            <path d="M12 9L16 3L20 9" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 6: AÑADIR Y NORMALIZAR SUPERIOR                         -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-head-1" onclick="showInfo('Añadir y Normalizar (Head)', 'Suma residual entre la proyección lineal y la salida de las capas atencionales/FFN, estabilizada con Layer Normalization.', 'x = LayerNorm(x + Residual)', '(Batch, H, C)')">
+          <!-- Columna Izquierda -->
+          <div class="col-side-left">
+            <span class="font-mono" style="font-size: 12px; font-weight: 700; color: #475569;">
+              Output (Batch, C, T)
+            </span>
+          </div>
+
+          <!-- Columna Central -->
+          <div class="col-center">
+            <div class="card-node node-add-norm" id="node-addnorm-top">
+              Añadir y Normalizar
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="col-side-right">
+            <span class="font-mono" style="font-size: 11px; color: #64748b; background: #f1f5f9; padding: 4px 8px; border-radius: 6px; border: 1px solid #e2e8f0;">
+              (Batch, H, C)
+            </span>
+          </div>
+        </div>
+
+        <!-- Conector 6 -> 5 con bucle residual derecho animado -->
+        <div class="vert-connector" style="margin: -2px 0;">
+          <svg width="280" height="38" viewBox="0 0 280 38" fill="none">
+            <line x1="140" y1="38" x2="140" y2="2" stroke="#94a3b8" stroke-width="1.75" class="flow-line-reverse"/>
+            <path d="M137 7L140 2L143 7" stroke="#94a3b8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Bucle residual derecho animado -->
+            <path d="M140 34 H215 V4 H148" stroke="#3b82f6" stroke-width="1.5" class="flow-line-reverse" fill="none"/>
+            <path d="M153 1.5 L147 4 L153 6.5" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 5: FFN DE PROYECCIÓN                                    -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-head-2" onclick="showInfo('FFN de Proyección', 'Red neuronal densa totalmente conectada (Feed-Forward Network) con funciones de activación ReLU y Dropout para refinar las representaciones ricas del contexto.', 'FFN(x) = W_2 · ReLU(W_1 · x + b_1) + b_2', '(Batch, H, C)')">
+          <!-- Columna Izquierda -->
+          <div class="col-side-left">
+            <span style="font-size: 13px; font-weight: 900; color: #1e293b; display: block;">FFN de Proyección</span>
+            <span style="font-size: 10px; color: #94a3b8; font-weight: 500;">Feed-Forward Network</span>
+          </div>
+
+          <!-- Columna Central -->
+          <div class="col-center">
+            <div class="card-node node-ffn-wrapper" id="node-ffn">
+              <div class="node-add-norm" style="padding: 6px 12px; font-size: 11.5px;">
+                Añadir y Normalizar
+              </div>
+              <div class="node-ffn-feed">
+                Alimentación hacia Adelante
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="col-side-right">
+            <span style="font-size: 11px; color: #2563eb; font-weight: 700; background: #eff6ff; padding: 4px 10px; border-radius: 8px; border: 1px solid #bfdbfe;">
+              Residual FFN
+            </span>
+          </div>
+        </div>
+
+        <!-- Conector 5 -> 4 -->
+        <div class="vert-connector">
+          <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
+            <line x1="16" y1="26" x2="16" y2="4" stroke="#94a3b8" stroke-width="1.75" class="flow-line-reverse"/>
+            <path d="M12.5 9L16 3L19.5 9" stroke="#94a3b8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 4: AUTO-ATENCIÓN MULTI-CABEZAL                          -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-head-3" onclick="showInfo('Auto-Atención Multi-Cabezal', 'Mecanismo de atención que pondera las correlaciones globales entre diferentes pasos del tiempo y series temporales usando proyecciones Query, Key y Value.', 'Attention(Q, K, V) = softmax(QK^T / √d_k) · V', '(Batch, H, C)')">
+          <!-- Columna Izquierda -->
+          <div class="col-side-left">
+            <span class="font-mono" style="font-size: 11px; color: #64748b; font-weight: 700;">
+              Multi-Head Attention
+            </span>
+          </div>
+
+          <!-- Columna Central -->
+          <div class="col-center">
+            <div class="card-node node-attention" id="node-attention">
+              <h4 style="font-size: 13.5px; font-weight: 900; color: #7c2d12; margin-bottom: 2px;">
+                Auto-Atención Multi-Cabezal
+              </h4>
+              <span style="font-size: 10px; font-weight: 600; color: #9a3412;">
+                Ponderación temporal de correlaciones globales
+              </span>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="col-side-right">
+            <span class="badge-pill badge-core" style="font-size: 10.5px;">
+              Proyecciones Q, K, V
+            </span>
+          </div>
+        </div>
+
+        <!-- Conector 4 -> 3 -->
+        <div class="vert-connector">
+          <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
+            <line x1="16" y1="26" x2="16" y2="4" stroke="#94a3b8" stroke-width="1.75" class="flow-line-reverse"/>
+            <path d="M12.5 9L16 3L19.5 9" stroke="#94a3b8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 3: LINEAL (C, H)                                        -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-head-4" onclick="showInfo('Capa Lineal (C, H)', 'Proyecta linealmente la dimensión temporal hacia el número de pasos de predicción deseados H para cada canal C.', 'Linear: ℝ^(Batch × C × T) → ℝ^(Batch × C × H)', '(Batch, C, H)')">
+          <!-- Columna Izquierda -->
+          <div class="col-side-left">
+            <span class="font-mono" style="font-size: 12px; font-weight: 800; color: #6b21a8;">
+              Lineal (Batch, C, T)
+            </span>
+          </div>
+
+          <!-- Columna Central -->
+          <div class="col-center">
+            <div class="card-node node-linear" id="node-linear">
+              Lineal (C, H)
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="col-side-right">
+            <span style="font-size: 11px; color: #64748b; font-weight: 500;">
+              Proyección al horizonte H
+            </span>
+          </div>
+        </div>
+
+        <!-- Conector 3 -> 2 -->
+        <div class="vert-connector">
+          <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
+            <line x1="16" y1="26" x2="16" y2="4" stroke="#94a3b8" stroke-width="1.75" class="flow-line-reverse"/>
+            <path d="M12.5 9L16 3L19.5 9" stroke="#94a3b8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 2: NX BLOQUES TSMIXER (NÚCLEO ARQUITECTÓNICO)           -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-core" style="margin: 8px 0;" onclick="showInfo('Nx Capas TSMixer', 'Pila modular de Nx bloques TSMixer idénticos. Cada bloque intercala un módulo Time-Mixing (temporal) con un módulo Feature-Mixing (canales), manteniendo saltos residuales de conexión en cada sub-etapa.', 'Bloque = FeatureMix(TimeMix(X))', '(Batch, T, C)')">
+          
+          <!-- Columna Izquierda: Nx -->
+          <div class="col-side-left">
+            <div style="background: #ffffff; border: 2px solid #cbd5e1; border-radius: 18px; padding: 14px; display: inline-block; max-width: 190px;">
+              <span style="font-size: 26px; font-weight: 900; color: #0f172a; display: block; line-height: 1;">Nx</span>
+              <span style="font-size: 12px; font-weight: 800; color: #475569; display: block; margin-top: 2px;">(p. ej., 2 Bloques)</span>
+              <p style="font-size: 10px; color: #64748b; line-height: 1.3; margin-top: 6px;">
+                Extracción secuencial e iterativa de relaciones temporales y de canal
+              </p>
+            </div>
+          </div>
+
+          <!-- Columna Central: Gran Contenedor Nx -->
+          <div class="col-center">
+            <div class="outer-nx-container" id="node-nx-container">
+              
+              <!-- Conexión Residual Externa del Bloque Nx con flujo animado -->
+              <div style="position: absolute; left: -14px; top: 20px; bottom: 20px; width: 16px; pointer-events: none;">
+                <svg width="100%" height="100%" viewBox="0 0 16 300" fill="none" preserveAspectRatio="none">
+                  <path d="M14 295 H3 V5 H14" stroke="#0f172a" stroke-width="2" class="flow-line-reverse"/>
+                  <path d="M8 2 L14 5 L8 8" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- Añadir y Normalizar de Salida del Bloque -->
+              <div class="node-add-norm" style="padding: 7px 12px; font-size: 12px; margin-bottom: 12px;">
+                Añadir y Normalizar
+              </div>
+
+              <!-- ======================================================= -->
+              <!-- CAPA TSMIXER (Caja Naranja Principal)                   -->
+              <!-- ======================================================= -->
+              <div class="inner-tsmixer-layer" id="node-tsmixer-inner">
+                
+                <!-- Encabezado de la Capa -->
+                <div class="tsmixer-title-bar">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="width: 10px; height: 10px; background: #ea580c; border-radius: 50%;"></span>
+                    <h3 style="font-size: 13.5px; font-weight: 900; color: #7c2d12; text-transform: uppercase; letter-spacing: 0.04em;">
+                      Capa TSMixer
+                    </h3>
+                  </div>
+                  <span style="font-size: 10px; font-weight: 700; background: #ffedd5; color: #9a3412; padding: 2px 8px; border-radius: 9999px; border: 1px solid #fdba74;">
+                    Core MLP
+                  </span>
+                </div>
+
+                <!-- Capa de Proyección Temporal -->
+                <div class="node-temporal-proj" id="node-temporal-proj">
+                  <span style="font-size: 12px; font-weight: 900; color: #581c87; display: block;">
+                    Capa de Proyección Temporal
+                  </span>
+                  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #6b21a8; margin-top: 3px;">
+                    <span>Transponer</span>
+                    <span>→</span>
+                    <span style="background: #ffffff; padding: 2px 6px; border-radius: 4px; border: 1px solid #e9d5ff;">FC</span>
+                    <span>→</span>
+                    <span>Transponer</span>
+                  </div>
+                </div>
+
+                <!-- Rejilla de Dos Submódulos -->
+                <div class="mixer-grid">
+                  
+                  <!-- ── SUBMÓDULO 1: MEZCLA DE TIEMPO (Azul) ── -->
+                  <div class="box-time-mix" id="node-time-mix">
+                    <!-- Conexión Residual de Tiempo Animada -->
+                    <div style="position: absolute; left: -8px; top: 12px; bottom: 12px; width: 10px; pointer-events: none;">
+                      <svg width="100%" height="100%" viewBox="0 0 10 140" fill="none" preserveAspectRatio="none">
+                        <path d="M8 135 H2 V5 H8" stroke="#0284c7" stroke-width="1.5" class="flow-line-reverse"/>
+                        <path d="M5 3 L8 5 L5 7" stroke="#0284c7" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+
+                    <div>
+                      <div style="text-align: center; margin-bottom: 8px;">
+                        <h5 style="font-size: 12px; font-weight: 900; color: #0369a1; line-height: 1.1;">
+                          Mezcla de Tiempo
+                        </h5>
+                        <span style="font-size: 9px; font-weight: 700; color: #0284c7; display: block; margin-top: 2px;">
+                          (Time-Mixing) Transponer
+                        </span>
+                      </div>
+
+                      <!-- MLP Tiempo -->
+                      <div class="sub-mlp-time">
+                        <span style="font-size: 12px; font-weight: 900; color: #0f172a; display: block;">
+                          MLP<sub>tiempo</sub>
+                        </span>
+                        <span style="font-size: 8.5px; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #334155; display: block; margin-top: 2px;">
+                          (FC → ReLU → Dropout)
+                        </span>
+                      </div>
+
+                      <!-- 2D BatchNorm -->
+                      <div class="sub-batchnorm">
+                        <span style="display: block;">Normalización por Lotes 2D</span>
+                        <span style="font-size: 8px; opacity: 0.85;">(2D BatchNorm)</span>
+                      </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 8px;">
+                      <span class="font-mono" style="font-size: 9px; font-weight: 700; color: #0369a1; background: #ffffff; padding: 2px 8px; border-radius: 6px; border: 1px solid #bae6fd;">
+                        Transpose
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- ── SUBMÓDULO 2: MEZCLA DE CARACTERÍSTICAS (Ámbar) ── -->
+                  <div class="box-feature-mix" id="node-feature-mix">
+                    <!-- Conexión Residual de Características Animada -->
+                    <div style="position: absolute; right: -8px; top: 12px; bottom: 12px; width: 10px; pointer-events: none;">
+                      <svg width="100%" height="100%" viewBox="0 0 10 140" fill="none" preserveAspectRatio="none">
+                        <path d="M2 135 H8 V5 H2" stroke="#d97706" stroke-width="1.5" class="flow-line-reverse"/>
+                        <path d="M5 3 L2 5 L5 7" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+
+                    <div>
+                      <div style="text-align: center; margin-bottom: 8px;">
+                        <h5 style="font-size: 12px; font-weight: 900; color: #854d0e; line-height: 1.1;">
+                          Mezcla de Características
+                        </h5>
+                        <span style="font-size: 9px; font-weight: 700; color: #a16207; display: block; margin-top: 2px;">
+                          (Feature-Mixing)
+                        </span>
+                      </div>
+
+                      <!-- Añadir y Residual -->
+                      <div class="node-add-norm" style="padding: 5px 8px; font-size: 10px; margin-bottom: 6px;">
+                        Añadir y Residual
+                      </div>
+
+                      <!-- 2D BatchNorm -->
+                      <div class="sub-batchnorm">
+                        <span style="display: block;">2D BatchNorm</span>
+                      </div>
+
+                      <!-- MLP Características -->
+                      <div class="sub-mlp-feature">
+                        <span style="font-size: 12px; font-weight: 900; color: #713f12; display: block;">
+                          MLP<sub>caract</sub>
+                        </span>
+                        <span style="font-size: 8px; font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #854d0e; display: block; margin-top: 2px; line-height: 1.2;">
+                          (FC → ReLU → Dropout → FC → Dropout)
+                        </span>
+                      </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 8px;">
+                      <span class="font-mono" style="font-size: 9px; font-weight: 700; color: #854d0e; background: #ffffff; padding: 2px 8px; border-radius: 6px; border: 1px solid #fde047;">
+                        Residual
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Anotación de Mapeo L a H -->
+          <div class="col-side-right">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 18px; padding: 14px; max-width: 190px;">
+              <span style="font-size: 10.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; display: block;">
+                Proyección
+              </span>
+              <p style="font-size: 12px; font-weight: 800; color: #0f172a; line-height: 1.3; margin: 4px 0;">
+                Mapear series temporales de longitud <span class="font-mono" style="color: #2563eb;">L</span> a longitud <span class="font-mono" style="color: #059669;">H</span>
+              </p>
+              <div style="margin-top: 6px; padding-top: 6px; border-top: 1px solid #e2e8f0; font-size: 10px; color: #64748b;">
+                <div><strong>L</strong>: Ventana histórica</div>
+                <div><strong>H</strong>: Pasos predichos</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Conector 2 -> 1 -->
+        <div class="vert-connector">
+          <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
+            <line x1="16" y1="26" x2="16" y2="4" stroke="#94a3b8" stroke-width="1.75" class="flow-line-reverse"/>
+            <path d="M12.5 9L16 3L19.5 9" stroke="#94a3b8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 1: SERIES TEMPORALES HISTÓRICAS (TENSOR X)              -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-inputs-1" onclick="showInfo('Series Temporales Históricas (Tensor X)', 'Matriz de entrada observada de longitud temporal T para C características continuas por cada muestra en el lote (Batch).', 'X ∈ ℝ^(T × C)', '(Batch, T, C)')">
+          <!-- Columna Izquierda -->
+          <div class="col-side-left">
+            <div class="annotation-box">
+              <span class="annotation-title font-mono">Series Temporales</span>
+              <span class="annotation-sub font-mono font-bold" style="color: #3b82f6;">(Batch, T, C)</span>
+            </div>
+          </div>
+
+          <!-- Columna Central -->
+          <div class="col-center">
+            <div class="card-node node-tensor-x" id="node-tensor-x">
+              <h4 style="font-size: 13px; font-weight: 900; color: #0f172a; margin-bottom: 2px;">
+                Series Temporales Históricas
+              </h4>
+              <div class="font-mono" style="font-size: 17px; font-weight: 900; color: #1d4ed8;">
+                X ∈ ℝ<sup>T × C</sup>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="col-side-right">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span style="font-size: 11px; font-weight: 700; color: #334155; background: #ffffff; border: 1px solid #cbd5e1; padding: 4px 8px; border-radius: 8px;">
+                Tamaño del lote incluido
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conector 1 -> 0 -->
+        <div class="vert-connector">
+          <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
+            <line x1="16" y1="26" x2="16" y2="4" stroke="#94a3b8" stroke-width="1.75" class="flow-line-reverse"/>
+            <path d="M12.5 9L16 3L19.5 9" stroke="#94a3b8" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- NIVEL 0: ENTRADAS DE CANALES C1..C                            -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-inputs-2" onclick="showInfo('Canales de Variables', 'Cada sensor, producto o métrica individual representa un canal C paralelo alimentado simultáneamente al modelo.', 'C = {C_1, C_2, ..., C_n}', '(Batch, T, C)')">
+          <!-- Columna Izquierda -->
+          <div class="col-side-left">
+            <div class="annotation-box" style="background: #fff1f2; border-color: #fecdd3;">
+              <span class="annotation-title" style="color: #9f1239;">Input Shape</span>
+              <span class="annotation-sub font-mono font-bold" style="color: #be123c;">(Batch, T, C)</span>
+            </div>
+          </div>
+
+          <!-- Columna Central -->
+          <div class="col-center">
+            <div class="card-node channels-bar" id="node-channels">
+              <div class="channel-cell">C<sub>1</sub></div>
+              <div class="channel-cell">C<sub>2</sub></div>
+              <div class="channel-cell" style="background: #fff1f2; border-color: #fecdd3; color: #be123c;">...</div>
+              <div class="channel-cell">C<sub>i</sub></div>
+              <div class="channel-cell">C</div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="col-side-right">
+            <span style="font-size: 11px; color: #64748b; font-weight: 500;">
+              C variables o canales paralelos
+            </span>
+          </div>
+        </div>
+
+        <!-- ============================================================= -->
+        <!-- MATRIZ TEMPORAL / REJILLA INFERIOR                            -->
+        <!-- ============================================================= -->
+        <div class="diagram-row" id="row-inputs-3" style="margin-top: 4px;">
+          <!-- Columna Izquierda: Ejes C, B, C -->
+          <div class="col-side-left">
+            <span style="font-size: 12px; font-weight: 800; color: #334155; display: block;">Variables C</span>
+            <div class="font-mono" style="font-size: 11px; font-weight: 800; color: #94a3b8; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; margin-top: 4px;">
+              <span>C</span>
+              <span>B</span>
+              <span>C</span>
+            </div>
+          </div>
+
+          <!-- Columna Central: Cuadrícula SVG con puntos animados -->
+          <div class="col-center">
+            <div class="matrix-container" id="node-matrix">
+              
+              <!-- Flechas con animación de rebote hacia los canales -->
+              <div class="grid-arrows">
+                <div style="display: flex; justify-content: center;" class="arrow-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <line x1="8" y1="16" x2="8" y2="3" stroke="#2563eb" stroke-width="1.75"/>
+                    <path d="M5 6L8 2L11 6" stroke="#2563eb" stroke-width="1.75" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div style="display: flex; justify-content: center;" class="arrow-icon" style="animation-delay: 0.2s;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <line x1="8" y1="16" x2="8" y2="3" stroke="#2563eb" stroke-width="1.75"/>
+                    <path d="M5 6L8 2L11 6" stroke="#2563eb" stroke-width="1.75" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                  <span class="font-mono" style="font-size: 12px; color: #94a3b8; font-weight: 800;">...</span>
+                </div>
+                <div style="display: flex; justify-content: center;" class="arrow-icon" style="animation-delay: 0.4s;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <line x1="8" y1="16" x2="8" y2="3" stroke="#2563eb" stroke-width="1.75"/>
+                    <path d="M5 6L8 2L11 6" stroke="#2563eb" stroke-width="1.75" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div style="display: flex; justify-content: center;" class="arrow-icon" style="animation-delay: 0.6s;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <line x1="8" y1="16" x2="8" y2="3" stroke="#2563eb" stroke-width="1.75"/>
+                    <path d="M5 6L8 2L11 6" stroke="#2563eb" stroke-width="1.75" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Rejilla de Series Temporales con Puntos de Telemetría Dinámicos -->
+              <div class="grid-svg-card">
+                <svg width="100%" height="56" viewBox="0 0 320 56" fill="none">
+                  <!-- Líneas de la cuadrícula -->
+                  <line x1="10" y1="14" x2="310" y2="14" stroke="#cbd5e1" stroke-width="1.25"/>
+                  <line x1="10" y1="28" x2="310" y2="28" stroke="#cbd5e1" stroke-width="1.25"/>
+                  <line x1="10" y1="42" x2="310" y2="42" stroke="#cbd5e1" stroke-width="1.25"/>
+
+                  <!-- Líneas verticales -->
+                  <line x1="32" y1="6" x2="32" y2="50" stroke="#94a3b8" stroke-width="1.5"/>
+                  <line x1="80" y1="6" x2="80" y2="50" stroke="#94a3b8" stroke-width="1.5"/>
+
+                  <!-- Puntos suspensivos -->
+                  <circle cx="150" cy="28" r="2.5" fill="#94a3b8"/>
+                  <circle cx="160" cy="28" r="2.5" fill="#94a3b8"/>
+                  <circle cx="170" cy="28" r="2.5" fill="#94a3b8"/>
+
+                  <line x1="240" y1="6" x2="240" y2="50" stroke="#94a3b8" stroke-width="1.5"/>
+                  <line x1="288" y1="6" x2="288" y2="50" stroke="#94a3b8" stroke-width="1.5"/>
+
+                  <!-- Puntos de datos medidos con animación pulsante -->
+                  <circle cx="32" cy="14" r="4" fill="#2563eb" class="pulse-point"/>
+                  <circle cx="80" cy="28" r="4" fill="#3b82f6" class="pulse-point-delayed"/>
+                  <circle cx="240" cy="42" r="4" fill="#60a5fa" class="pulse-point"/>
+                  <circle cx="288" cy="14" r="4" fill="#2563eb" class="pulse-point-delayed"/>
+                </svg>
+              </div>
+
+              <!-- Título de la Base -->
+              <span style="font-size: 13px; font-weight: 900; color: #0f172a; margin-top: 8px; text-align: center;">
+                Entradas de Series Temporales Multivariantes
+              </span>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Ventana de Retroceso -->
+          <div class="col-side-right">
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 10px 14px; max-width: 190px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+              <span style="font-size: 12px; font-weight: 800; color: #0f172a; display: block;">
+                Ventana de Retroceso
+              </span>
+              <span class="font-mono" style="font-size: 11px; font-weight: 800; color: #2563eb; display: block; margin-top: 2px;">
+                (p. ej., L = T pasos)
+              </span>
+              <span style="font-size: 9.5px; color: #94a3b8; display: block; margin-top: 2px;">
+                Lookback de observación previa
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- FOOTER / LEYENDA TÉCNICA                                         -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <footer class="diagram-footer">
+      <div class="footer-grid">
+        
+        <!-- 1. Time-Mixing -->
+        <div class="footer-card" onclick="filterDiagram('core')">
+          <div class="footer-card-header">
+            <span class="footer-dot" style="background: #0284c7;"></span>
+            <h6 class="footer-title">1. Time-Mixing</h6>
+          </div>
+          <p class="footer-desc">
+            Aplica MLPs compartidos sobre el eje temporal de forma univariante para cada canal individualmente, extrayendo dinámicas de frecuencia sin mezclar variables.
+          </p>
+        </div>
+
+        <!-- 2. Feature-Mixing -->
+        <div class="footer-card" onclick="filterDiagram('core')">
+          <div class="footer-card-header">
+            <span class="footer-dot" style="background: #d97706;"></span>
+            <h6 class="footer-title">2. Feature-Mixing</h6>
+          </div>
+          <p class="footer-desc">
+            Aplica capas densas cruzando las variables en cada paso de tiempo, descubriendo dependencias interactivas complejas entre las diferentes series del sistema.
+          </p>
+        </div>
+
+        <!-- 3. Proyección Temporal -->
+        <div class="footer-card" onclick="filterDiagram('core')">
+          <div class="footer-card-header">
+            <span class="footer-dot" style="background: #7c3aed;"></span>
+            <h6 class="footer-title">3. Proyección Temporal</h6>
+          </div>
+          <p class="footer-desc">
+            Mapea directamente la longitud histórica <span class="font-mono font-bold" style="color: #2563eb;">L</span> al horizonte de predicción <span class="font-mono font-bold" style="color: #059669;">H</span> de forma lineal y ultra rápida.
+          </p>
+        </div>
+
+        <!-- 4. Atención + FFN -->
+        <div class="footer-card" onclick="filterDiagram('head')">
+          <div class="footer-card-header">
+            <span class="footer-dot" style="background: #ea580c;"></span>
+            <h6 class="footer-title">4. Auto-Atención + FFN</h6>
+          </div>
+          <p class="footer-desc">
+            Pondera selectivamente momentos clave del pasado con atención multi-cabezal, enriqueciendo la proyección antes de emitir el pronóstico multivariante final.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Barra de Tensores y Shapes -->
+      <div class="tensor-bar">
+        <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+          <span><strong>Batch</strong>: Lote de muestras</span>
+          <span><strong>T (o L)</strong>: Pasos de tiempo pasados</span>
+          <span><strong>C</strong>: Número de variables / canales</span>
+          <span><strong>H</strong>: Pasos predichos al horizonte</span>
+        </div>
+        <span style="font-family: 'Inter', sans-serif; font-weight: 800; color: #065f46; background: #ecfdf5; padding: 4px 10px; border-radius: 9999px; border: 1px solid #a7f3d0;">
+          ✓ TSMixer Architecture
+        </span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <!-- MODAL FLOTANTE DE DETALLE DE CAPAS (AL HACER CLIC)                 -->
+  <!-- ═══════════════════════════════════════════════════════════════════ -->
+  <div class="detail-overlay" id="detail-modal" onclick="closeInfo(event)">
+    <div class="detail-modal" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+        <h3 id="modal-title" style="font-size: 17px; font-weight: 900; color: #0f172a;">Detalle de Capa</h3>
+        <button onclick="closeInfo()" style="border: none; background: #f1f5f9; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: 800; color: #64748b;">✕</button>
+      </div>
+      <p id="modal-desc" style="font-size: 13px; color: #475569; line-height: 1.5; margin-bottom: 14px;">Descripción detallada.</p>
+      
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 10px 14px; margin-bottom: 10px;">
+        <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #94a3b8; display: block;">Fórmula / Operación</span>
+        <code id="modal-formula" class="font-mono" style="font-size: 12px; font-weight: 700; color: #2563eb; display: block; margin-top: 2px;">f(x)</code>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 10px 14px;">
+        <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #94a3b8; display: block;">Dimensión del Tensor (Shape)</span>
+        <code id="modal-shape" class="font-mono" style="font-size: 12px; font-weight: 700; color: #059669; display: block; margin-top: 2px;">(Batch, T, C)</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <!-- SCRIPT: FILTRADO, SIMULACIÓN DE FLUJO Y MODALES                   -->
+  <!-- ───────────────────────────────────────────────────────────────── -->
+  <script>
+    let isSimulating = false;
+    let simulationTimer = null;
+
+    // Filtrar diagrama por etapa
+    function filterDiagram(section) {
+      const buttons = ['all', 'inputs', 'core', 'head', 'output'];
+      buttons.forEach(function(b) {
+        const btn = document.getElementById('btn-' + b);
+        if (btn) {
+          if (b === section) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      });
+
+      const rows = [
+        { id: 'row-output', cat: 'output' },
+        { id: 'row-head-1', cat: 'head' },
+        { id: 'row-head-2', cat: 'head' },
+        { id: 'row-head-3', cat: 'head' },
+        { id: 'row-head-4', cat: 'head' },
+        { id: 'row-core', cat: 'core' },
+        { id: 'row-inputs-1', cat: 'inputs' },
+        { id: 'row-inputs-2', cat: 'inputs' },
+        { id: 'row-inputs-3', cat: 'inputs' }
+      ];
+
+      rows.forEach(function(r) {
+        const el = document.getElementById(r.id);
+        if (!el) return;
+        if (section === 'all' || r.cat === section) {
+          el.style.opacity = '1';
+          el.style.filter = 'none';
+          el.style.transform = 'translateY(0) scale(1)';
+        } else {
+          el.style.opacity = '0.2';
+          el.style.filter = 'grayscale(85%)';
+          el.style.transform = 'scale(0.98)';
+        }
+      });
+    }
+
+    // Modal de Información de cada nodo
+    function showInfo(title, desc, formula, shape) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal-formula').textContent = formula;
+      document.getElementById('modal-shape').textContent = shape;
+      document.getElementById('detail-modal').style.display = 'flex';
+    }
+
+    function closeInfo() {
+      document.getElementById('detail-modal').style.display = 'none';
+    }
+
+    // Simulación del flujo de datos (Forward Pass)
+    function toggleDataStream() {
+      const label = document.getElementById('simulate-label');
+      const toast = document.getElementById('toast-status');
+      const toastText = document.getElementById('toast-text');
+
+      if (isSimulating) {
+        // Detener simulación
+        isSimulating = false;
+        clearTimeout(simulationTimer);
+        label.textContent = 'Simular Flujo (Forward Pass)';
+        toast.style.display = 'none';
+        clearSimulationHighlights();
+        filterDiagram('all');
+        return;
+      }
+
+      // Iniciar simulación
+      isSimulating = true;
+      label.textContent = 'Pausar Simulación';
+      toast.style.display = 'inline-flex';
+      runForwardPass(0);
+    }
+
+    function clearSimulationHighlights() {
+      const elements = [
+        'node-matrix',
+        'node-channels',
+        'node-tensor-x',
+        'node-time-mix',
+        'node-feature-mix',
+        'node-temporal-proj',
+        'node-linear',
+        'node-attention',
+        'node-ffn',
+        'node-addnorm-top',
+        'node-output-card'
+      ];
+      elements.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove('simulating-active');
+      });
+    }
+
+    function runForwardPass(step) {
+      if (!isSimulating) return;
+
+      const toastText = document.getElementById('toast-text');
+      const stages = [
+        {
+          ids: ['node-matrix', 'node-channels'],
+          text: 'Paso 1: Lectura de lookback temporal L = T y canales C',
+          delay: 1100
+        },
+        {
+          ids: ['node-tensor-x'],
+          text: 'Paso 2: Formación del tensor histórico X ∈ ℝ^(T × C)',
+          delay: 1000
+        },
+        {
+          ids: ['node-time-mix'],
+          text: 'Paso 3: Time-Mixing (transposición y MLP temporal con BatchNorm)',
+          delay: 1200
+        },
+        {
+          ids: ['node-feature-mix'],
+          text: 'Paso 4: Feature-Mixing (MLP entre canales y suma residual)',
+          delay: 1200
+        },
+        {
+          ids: ['node-temporal-proj'],
+          text: 'Paso 5: Capa de Proyección Temporal (L → H)',
+          delay: 1100
+        },
+        {
+          ids: ['node-linear', 'node-attention'],
+          text: 'Paso 6: Proyección Lineal (C, H) y Auto-Atención Multi-Cabezal',
+          delay: 1200
+        },
+        {
+          ids: ['node-ffn', 'node-addnorm-top'],
+          text: 'Paso 7: FFN de Proyección y Normalización final',
+          delay: 1100
+        },
+        {
+          ids: ['node-output-card'],
+          text: 'Paso 8: ¡Pronóstico emitido! Ỹ ∈ ℝ^(H × C) completado',
+          delay: 1400
+        }
+      ];
+
+      clearSimulationHighlights();
+
+      if (step >= stages.length) {
+        // Reiniciar ciclo de simulación
+        simulationTimer = setTimeout(() => runForwardPass(0), 1000);
+        return;
+      }
+
+      const current = stages[step];
+      toastText.textContent = current.text;
+
+      current.ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('simulating-active');
+      });
+
+      simulationTimer = setTimeout(() => {
+        runForwardPass(step + 1);
+      }, current.delay);
+    }
+  </script>
+
+</body>
+</html>
