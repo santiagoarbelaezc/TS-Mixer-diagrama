@@ -78,19 +78,22 @@
     }
 
     .brand-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: #09090b;
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 21px;
-      box-shadow: 0 10px 20px -3px rgba(234, 88, 12, 0.35);
+      font-size: 19px;
+      letter-spacing: -0.02em;
+      border: 1px solid #27272a;
+      box-shadow: 0 4px 14px rgba(9, 9, 11, 0.25);
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .brand-icon::after {
@@ -103,7 +106,7 @@
       background: linear-gradient(
         60deg,
         transparent 30%,
-        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.18) 50%,
         transparent 70%
       );
       transform: rotate(25deg);
@@ -116,16 +119,16 @@
     }
 
     .brand-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 900;
-      color: #0f172a;
+      color: #09090b;
       letter-spacing: -0.02em;
       line-height: 1.1;
     }
 
     .brand-subtitle {
-      font-size: 13px;
-      color: #64748b;
+      font-size: 12.5px;
+      color: #71717a;
       margin-top: 4px;
       font-weight: 500;
     }
@@ -134,18 +137,27 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 11.5px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
       font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-family: 'JetBrains Mono', monospace;
+      background: #ffffff;
+      border: 1px solid #e4e4e7;
+      color: #09090b;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
     }
     .badge-pill:hover {
-      transform: scale(1.04);
+      background: #f4f4f5;
+      border-color: #d4d4d8;
+      transform: translateY(-1px);
     }
-    .badge-input { background: #fff1f2; color: #9f1239; border: 1px solid #fecdd3; }
-    .badge-output { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
-    .badge-core { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+    .badge-input, .badge-output, .badge-core {
+      background: #ffffff;
+      color: #09090b;
+      border: 1px solid #e4e4e7;
+    }
 
     /* Barra de herramientas y animación interactiva */
     .controls-bar {
@@ -154,10 +166,10 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
-      background: #f8fafc;
+      background: #fafafa;
       padding: 8px 12px;
-      border-radius: 20px;
-      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      border: 1px solid #e4e4e7;
       margin-bottom: 24px;
     }
 
@@ -169,27 +181,46 @@
     }
 
     .nav-btn {
-      border: none;
+      border: 1px solid transparent;
       background: transparent;
-      padding: 7px 13px;
-      border-radius: 12px;
-      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 11.5px;
       font-weight: 700;
-      color: #64748b;
+      color: #71717a;
       cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
     }
 
     .nav-btn:hover {
-      color: #0f172a;
-      background: #f1f5f9;
+      color: #09090b;
+      background: #f4f4f5;
+      border-color: #e4e4e7;
       transform: translateY(-1px);
     }
 
     .nav-btn.active {
+      background: #09090b;
+      color: #ffffff;
+      border-color: #09090b;
+      box-shadow: 0 2px 6px rgba(9, 9, 11, 0.15);
+    }
+
+    .status-toast {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: #ffffff;
-      color: #2563eb;
-      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.12);
+      border: 1px solid #e4e4e7;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #09090b;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
 
     /* Botón de animación de flujo */
@@ -197,20 +228,22 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      background: #09090b;
       color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 14px;
-      font-size: 12px;
+      border: 1px solid #27272a;
+      padding: 7px 15px;
+      border-radius: 10px;
+      font-size: 11.5px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
-      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 2px 8px rgba(9, 9, 11, 0.2);
+      transition: all 0.2s ease;
     }
     .btn-simulate:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+      background: #18181b;
+      border-color: #3f3f46;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(9, 9, 11, 0.3);
     }
     .btn-simulate:active {
       transform: translateY(0);
@@ -670,10 +703,10 @@
 
     @keyframes haloPulse {
       0%, 100% {
-        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4), 0 10px 25px rgba(37, 99, 235, 0.2);
+        box-shadow: 0 0 0 0 rgba(9, 9, 11, 0.35), 0 10px 25px rgba(9, 9, 11, 0.15);
       }
       50% {
-        box-shadow: 0 0 0 12px rgba(37, 99, 235, 0), 0 15px 35px rgba(37, 99, 235, 0.35);
+        box-shadow: 0 0 0 10px rgba(9, 9, 11, 0), 0 15px 35px rgba(9, 9, 11, 0.25);
       }
     }
 
@@ -812,28 +845,28 @@
     .video-icon-badge {
       width: 44px;
       height: 44px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      border-radius: 12px;
+      background: #18181b;
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      border: 1px solid #27272a;
       flex-shrink: 0;
     }
 
     .video-title {
-      font-size: 20px;
-      font-weight: 900;
+      font-size: 18px;
+      font-weight: 800;
       color: #ffffff;
       letter-spacing: -0.01em;
       line-height: 1.2;
     }
 
     .video-subtitle {
-      font-size: 12px;
-      color: #94a3b8;
+      font-size: 11.5px;
+      color: #a1a1aa;
       margin-top: 2px;
       font-weight: 500;
     }
@@ -849,20 +882,22 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-      color: #ffffff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 800;
+      background: #18181b;
+      color: #f4f4f5;
+      border: 1px solid #27272a;
+      padding: 7px 14px;
+      border-radius: 10px;
+      font-size: 11.5px;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       transition: all 0.2s ease;
     }
     .btn-fullscreen-top:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
+      background: #27272a;
+      border-color: #3f3f46;
+      color: #ffffff;
+      transform: translateY(-1px);
     }
 
     /* Contenedor del reproductor */
@@ -899,30 +934,30 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 76px;
-      height: 76px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: rgba(37, 99, 235, 0.85);
+      background: rgba(9, 9, 11, 0.85);
       backdrop-filter: blur(8px);
-      border: 3px solid rgba(255, 255, 255, 0.8);
+      border: 2px solid rgba(255, 255, 255, 0.85);
       color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(37, 99, 235, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       z-index: 15;
     }
     .big-play-btn:hover {
-      transform: translate(-50%, -50%) scale(1.12);
-      background: rgba(37, 99, 235, 1);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(37, 99, 235, 0.8);
+      transform: translate(-50%, -50%) scale(1.1);
+      background: rgba(24, 24, 27, 0.95);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
     }
     .big-play-btn svg {
-      margin-left: 4px;
-      width: 32px;
-      height: 32px;
+      margin-left: 3px;
+      width: 28px;
+      height: 28px;
     }
 
     /* Barra de controles personalizada */
@@ -931,7 +966,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 60%, transparent 100%);
       padding: 16px 18px 12px;
       display: flex;
       flex-direction: column;
@@ -949,14 +984,14 @@
     .progress-bar-wrapper {
       position: relative;
       width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.25);
+      height: 5px;
+      background: rgba(255, 255, 255, 0.2);
       border-radius: 9999px;
       cursor: pointer;
       transition: height 0.15s ease;
     }
     .progress-bar-wrapper:hover {
-      height: 8px;
+      height: 7px;
     }
     .progress-bar-fill {
       position: absolute;
@@ -964,7 +999,7 @@
       left: 0;
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+      background: #ffffff;
       border-radius: 9999px;
       pointer-events: none;
     }
@@ -1125,6 +1160,217 @@
       color: #94a3b8;
       display: block;
     }
+
+    /* ==========================================================================
+       SECCIONES EXPANDIBLES (DISEÑO MONOCROMÁTICO & MINIMALISTA)
+       ========================================================================== */
+    .collapsible-hub {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid #e4e4e7;
+      width: 100%;
+    }
+
+    .hub-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      background: #fafafa;
+      border: 1px solid #e4e4e7;
+      border-radius: 18px;
+      padding: 16px 20px;
+    }
+
+    .hub-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hub-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: #09090b;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(9, 9, 11, 0.15);
+    }
+
+    .hub-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hub-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid #e4e4e7;
+      background: #ffffff;
+      color: #18181b;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+
+    .btn-hub-toggle:hover {
+      background: #f4f4f5;
+      border-color: #d4d4d8;
+      color: #09090b;
+      transform: translateY(-1px);
+    }
+
+    .btn-hub-toggle.active {
+      background: #09090b;
+      color: #ffffff;
+      border-color: #09090b;
+      box-shadow: 0 2px 8px rgba(9, 9, 11, 0.2);
+    }
+
+    .btn-hub-toggle svg {
+      flex-shrink: 0;
+    }
+
+    /* Tarjetas monocromáticas colapsables */
+    .collapsible-card {
+      background: #ffffff;
+      border-radius: 18px;
+      border: 1px solid #e4e4e7;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .collapsible-card.is-open {
+      border-color: #a1a1aa;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .collapsible-header-btn {
+      width: 100%;
+      background: #ffffff;
+      border: none;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: background 0.15s ease;
+      gap: 16px;
+    }
+
+    .collapsible-header-btn:hover {
+      background: #fafafa;
+    }
+
+    .collapsible-header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-icon-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f4f5;
+      color: #09090b;
+      border: 1px solid #e4e4e7;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .collapsible-card.is-open .section-icon-badge {
+      background: #09090b;
+      color: #ffffff;
+      border-color: #09090b;
+    }
+
+    .collapsible-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .status-pill-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .pill-hidden {
+      background: #f4f4f5;
+      color: #71717a;
+      border: 1px solid #e4e4e7;
+    }
+
+    .pill-visible {
+      background: #09090b;
+      color: #ffffff;
+      border: 1px solid #09090b;
+    }
+
+    .chevron-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #f4f4f5;
+      border: 1px solid #e4e4e7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, color 0.2s ease;
+      color: #71717a;
+    }
+
+    .collapsible-card.is-open .chevron-icon {
+      transform: rotate(180deg);
+      background: #09090b;
+      color: #ffffff;
+      border-color: #09090b;
+    }
+
+    .collapsible-content {
+      display: none;
+      padding: 18px 22px 26px 22px;
+      border-top: 1px solid #f4f4f5;
+      animation: expandFadeIn 0.25s ease-out;
+    }
+
+    @keyframes expandFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -1146,14 +1392,15 @@
 
       <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
         <span class="badge-pill badge-input">
-          <span style="width: 8px; height: 8px; background: #e11d48; border-radius: 50%;"></span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14"/><polyline points="19 10 12 17 5 10"/><line x1="4" y1="21" x2="20" y2="21"/></svg>
           Entrada: (Batch, T, C)
         </span>
         <span class="badge-pill badge-output">
-          <span style="width: 8px; height: 8px; background: #059669; border-radius: 50%;"></span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V5"/><polyline points="5 12 12 5 19 12"/><line x1="4" y1="3" x2="20" y2="3"/></svg>
           Salida: (Batch, H, C)
         </span>
         <span class="badge-pill badge-core">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           Nx Bloques
         </span>
       </div>
@@ -1162,24 +1409,49 @@
     <!-- BARRA DE CONTROL Y ANIMACIONES -->
     <div class="controls-bar">
       <nav class="nav-toolbar">
-        <button class="nav-btn active" id="btn-all" onclick="filterDiagram('all')">Ver Todo</button>
-        <button class="nav-btn" id="btn-inputs" onclick="filterDiagram('inputs')">1. Entradas y Canales</button>
-        <button class="nav-btn" id="btn-core" onclick="filterDiagram('core')">2. Capa TSMixer (Nx)</button>
-        <button class="nav-btn" id="btn-head" onclick="filterDiagram('head')">3. Proyección & Atención</button>
-        <button class="nav-btn" id="btn-output" onclick="filterDiagram('output')">4. Salidas</button>
-        <button class="nav-btn" id="btn-formulas-nav" onclick="scrollToFormulas()" style="color: #059669; font-weight: 800;">📐 Fórmulas Matemáticas</button>
-        <button class="nav-btn" id="btn-video-nav" onclick="scrollToVideo()" style="color: #ef4444; font-weight: 800;">🎥 Video Oficial</button>
+        <button class="nav-btn active" id="btn-all" onclick="filterDiagram('all')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Ver Todo
+        </button>
+        <button class="nav-btn" id="btn-inputs" onclick="filterDiagram('inputs')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v14"/><polyline points="19 10 12 17 5 10"/><line x1="4" y1="21" x2="20" y2="21"/></svg>
+          1. Entradas y Canales
+        </button>
+        <button class="nav-btn" id="btn-core" onclick="filterDiagram('core')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          2. Capa TSMixer (Nx)
+        </button>
+        <button class="nav-btn" id="btn-head" onclick="filterDiagram('head')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+          3. Proyección & Atención
+        </button>
+        <button class="nav-btn" id="btn-output" onclick="filterDiagram('output')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V5"/><polyline points="5 12 12 5 19 12"/><line x1="4" y1="3" x2="20" y2="3"/></svg>
+          4. Salidas
+        </button>
+        <button class="nav-btn" id="btn-analogia-nav" onclick="toggleAndScroll('analogia')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          Analogía
+        </button>
+        <button class="nav-btn" id="btn-formulas-nav" onclick="toggleAndScroll('formulas')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4H6l6 8-6 8h12"/></svg>
+          Fórmulas
+        </button>
+        <button class="nav-btn" id="btn-video-nav" onclick="toggleAndScroll('video')">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Video HD
+        </button>
       </nav>
 
       <div style="display: flex; align-items: center; gap: 10px;">
         <span id="toast-status" class="status-toast" style="display: none;">
-          <span style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%;"></span>
+          <span style="width: 6px; height: 6px; background: #09090b; border-radius: 50%; box-shadow: 0 0 0 3px rgba(9,9,11,0.15);"></span>
           <span id="toast-text">Simulando flujo...</span>
         </span>
         
         <button class="btn-simulate" id="btn-simulate" onclick="toggleDataStream()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"/>
           </svg>
           <span id="simulate-label">Simular Flujo (Forward Pass)</span>
         </button>
@@ -1759,681 +2031,930 @@
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════════════ -->
-    <!-- SECCIÓN: FORMULACIÓN CONCEPTUAL Y MATEMÁTICA (TS-MIXER FORMULAS)   -->
-    <!-- ═══════════════════════════════════════════════════════════════════ -->
-    <section class="formula-section-card" id="formulas-section">
-      
-      <!-- Encabezado de la Sección de Fórmulas -->
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.25rem;">
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; box-shadow: 0 6px 16px rgba(5, 150, 105, 0.35); flex-shrink: 0;">
-            ∑
-          </div>
-          <div>
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #059669; display: block;">Formulación Rigurosa & Receta</span>
-            <h2 style="font-size: 22px; font-weight: 900; color: #0f172a; margin-top: 2px; letter-spacing: -0.01em;">Ecuaciones y Lógica Matemática de TSMixer</h2>
-          </div>
-        </div>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;">
-            ✓ All-MLP Dual View
-          </span>
-          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
-            Google Research Paper
-          </span>
-        </div>
-      </div>
-
-      <!-- 1. Analogía Fundamental: La Hoja de Cálculo y las dos lecturas -->
-      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 20px; padding: 20px; margin-bottom: 24px;">
-        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-          <div>
-            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b;">Analogía Fundamental</span>
-            <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin-top: 2px;">La hoja de cálculo y las dos lecturas ortogonales</h3>
-          </div>
-          <span style="font-size: 11px; font-weight: 700; color: #475569; background: #ffffff; border: 1px solid #cbd5e1; padding: 3px 10px; border-radius: 8px;">
-            Explicación Intuitiva
-          </span>
-        </div>
-        <p style="color: #475569; font-size: 13.5px; line-height: 1.6; margin-bottom: 16px;">
-          Imagina una hoja de cálculo donde las <strong>filas son los días (eje temporal)</strong> y las <strong>columnas son variables</strong> (temperatura, lluvia, viento, ventas). TSMixer desacopla el problema en dos lecturas independientes:
-        </p>
-
-        <!-- Dos Tarjetas de Lectura -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 18px;">
-          <div style="background: #ffffff; border: 1px solid #bfdbfe; border-top: 4px solid #2563eb; border-radius: 16px; padding: 16px; box-shadow: 0 2px 8px rgba(37,99,235,0.05);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span style="font-size: 11px; font-weight: 800; color: #2563eb; text-transform: uppercase;">Lectura 1 • Eje Temporal</span>
-              <span style="font-size: 10.5px; font-weight: 800; background: #eff6ff; color: #1d4ed8; padding: 2px 8px; border-radius: 6px;">↓ Vertical</span>
-            </div>
-            <h4 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">Lee hacia abajo (el tiempo)</h4>
-            <p style="font-size: 12.5px; color: #475569; line-height: 1.5; margin: 0;">
-              Mira solo los días pasados de cada variable para aprender la inercia, ciclos y tendencias de cada sensor por separado (sin mezclar variables).
-            </p>
-          </div>
-
-          <div style="background: #ffffff; border: 1px solid #fde68a; border-top: 4px solid #d97706; border-radius: 16px; padding: 16px; box-shadow: 0 2px 8px rgba(217,119,6,0.05);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span style="font-size: 11px; font-weight: 800; color: #d97706; text-transform: uppercase;">Lectura 2 • Eje de Variables</span>
-              <span style="font-size: 10.5px; font-weight: 800; background: #fffbeb; color: #b45309; padding: 2px 8px; border-radius: 6px;">→ Horizontal</span>
-            </div>
-            <h4 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">Lee hacia los lados (las variables)</h4>
-            <p style="font-size: 12.5px; color: #475569; line-height: 1.5; margin: 0;">
-              Mira cómo se conectan los factores entre sí en un mismo día (ej: si hay nubes, baja la temperatura), descubriendo reglas físicas simultáneas.
-            </p>
-          </div>
-        </div>
-
-        <!-- Simulación Visual de Matriz -->
-        <div style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px; padding: 12px; overflow-x: auto;">
-          <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: center; font-family: 'JetBrains Mono', monospace;">
-            <thead>
-              <tr style="border-bottom: 2px solid #e2e8f0; color: #64748b; font-size: 11px;">
-                <th style="padding: 8px; text-align: left;">Día</th>
-                <th style="padding: 8px;">Temperatura (°C)</th>
-                <th style="padding: 8px;">Humedad (%)</th>
-                <th style="padding: 8px;">Viento (m/s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom: 1px solid #f1f5f9;">
-                <td style="padding: 8px; text-align: left; color: #94a3b8;">t - 2</td>
-                <td style="padding: 8px; background: #eff6ff; color: #1d4ed8; font-weight: 700;">18.4° ↓</td>
-                <td style="padding: 8px; color: #475569;">62%</td>
-                <td style="padding: 8px; color: #475569;">3.2</td>
-              </tr>
-              <tr style="border-bottom: 1px solid #f1f5f9;">
-                <td style="padding: 8px; text-align: left; color: #94a3b8;">t - 1</td>
-                <td style="padding: 8px; background: #eff6ff; color: #1d4ed8; font-weight: 700;">17.1° ↓</td>
-                <td style="padding: 8px; color: #475569;">68%</td>
-                <td style="padding: 8px; color: #475569;">3.8</td>
-              </tr>
-              <tr style="background: #fffbeb;">
-                <td style="padding: 8px; text-align: left; font-weight: 800; color: #0f172a;">Hoy (t)</td>
-                <td style="padding: 8px; color: #b45309; font-weight: 800;">15.9°</td>
-                <td style="padding: 8px; color: #b45309; font-weight: 800;">75% (Lluvia)</td>
-                <td style="padding: 8px; color: #b45309; font-weight: 800;">4.5 (Racha)</td>
-              </tr>
-            </tbody>
-          </table>
-          <div style="display: flex; gap: 16px; margin-top: 10px; font-size: 11.5px; color: #64748b; padding: 0 4px; flex-wrap: wrap;">
-            <span style="display: inline-flex; align-items: center; gap: 6px;">
-              <span style="width: 10px; height: 10px; background: #eff6ff; border: 1px solid #2563eb; border-radius: 2px;"></span>
-              Lectura hacia abajo (Time-Mixing)
-            </span>
-            <span style="display: inline-flex; align-items: center; gap: 6px;">
-              <span style="width: 10px; height: 10px; background: #fffbeb; border: 1px solid #d97706; border-radius: 2px;"></span>
-              Lectura horizontal (Feature-Mixing)
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2. Dual-View: En palabras sencillas (Receta) vs Ecuaciones Formales -->
-      <div style="background: #ffffff; border: 2px solid #0f172a; border-radius: 22px; padding: 22px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <!-- FOOTER / LEYENDA TÉCNICA DEL DIAGRAMA                             -->
+    <!-- ───────────────────────────────────────────────────────────────── -->
+    <footer class="diagram-footer" style="margin-top: 28px; padding-top: 20px; border-top: 1px solid #e4e4e7;">
+      <div class="footer-grid">
         
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
-          <span style="font-size: 12px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em;">
-            Formulación Dual del Bloque Central
-          </span>
-          <span style="font-size: 11px; font-weight: 700; color: #047857; background: #ecfdf5; padding: 3px 10px; border-radius: 9999px; border: 1px solid #a7f3d0;">
-            Paper Oficial TSMixer
-          </span>
+        <!-- 1. Time-Mixing -->
+        <div class="footer-card" onclick="filterDiagram('core')" style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 14px 16px; cursor: pointer;">
+          <div class="footer-card-header" style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="font-mono" style="font-size: 10.5px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 6px; border-radius: 4px;">01</span>
+            <h6 class="footer-title" style="font-size: 13px; font-weight: 800; color: #09090b;">Time-Mixing</h6>
+          </div>
+          <p class="footer-desc" style="font-size: 11.5px; color: #71717a; line-height: 1.5; margin: 0;">
+            Aplica MLPs compartidos sobre el eje temporal de forma univariante para cada canal individualmente, extrayendo dinámicas de frecuencia sin mezclar variables.
+          </p>
         </div>
 
-        <!-- Vista 1: En palabras sencillas (Receta) -->
-        <div style="margin-bottom: 20px;">
-          <div style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin-bottom: 10px;">
-            1. La lógica en lenguaje sencillo (como una receta paso a paso):
+        <!-- 2. Feature-Mixing -->
+        <div class="footer-card" onclick="filterDiagram('core')" style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 14px 16px; cursor: pointer;">
+          <div class="footer-card-header" style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="font-mono" style="font-size: 10.5px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 6px; border-radius: 4px;">02</span>
+            <h6 class="footer-title" style="font-size: 13px; font-weight: 800; color: #09090b;">Feature-Mixing</h6>
           </div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
-            
-            <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-left: 4px solid #2563eb; border-radius: 12px; padding: 12px 14px;">
-              <span style="font-size: 9.5px; font-weight: 800; color: #2563eb; text-transform: uppercase; display: block;">Paso 1 • Tiempo</span>
-              <div class="font-mono" style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin: 4px 0;">
-                Paso 1 = Datos + Red_Temporal( Girar(Datos) )
-              </div>
-              <p style="font-size: 11.5px; color: #475569; margin: 0; line-height: 1.45;">
-                Gira la tabla 90° para leer la historia hacia abajo y suma los datos originales para no olvidar el pasado.
-              </p>
-            </div>
-
-            <div style="background: #fefce8; border: 1px solid #fef08a; border-left: 4px solid #d97706; border-radius: 12px; padding: 12px 14px;">
-              <span style="font-size: 9.5px; font-weight: 800; color: #d97706; text-transform: uppercase; display: block;">Paso 2 • Variables</span>
-              <div class="font-mono" style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin: 4px 0;">
-                Paso 2 = Paso 1 + Red_Variables( Paso 1 )
-              </div>
-              <p style="font-size: 11.5px; color: #475569; margin: 0; line-height: 1.45;">
-                Lee la tabla normal para ver cómo se conectan las variables entre sí en el mismo instante de tiempo.
-              </p>
-            </div>
-
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 4px solid #059669; border-radius: 12px; padding: 12px 14px;">
-              <span style="font-size: 9.5px; font-weight: 800; color: #059669; text-transform: uppercase; display: block;">Paso 3 • Futuro</span>
-              <div class="font-mono" style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin: 4px 0;">
-                Futuro = Capa_Lineal( Paso 2 )
-              </div>
-              <p style="font-size: 11.5px; color: #475569; margin: 0; line-height: 1.45;">
-                Estira los pasos históricos observados L y genera las H horas futuras de un solo golpe.
-              </p>
-            </div>
-
-          </div>
+          <p class="footer-desc" style="font-size: 11.5px; color: #71717a; line-height: 1.5; margin: 0;">
+            Aplica capas densas cruzando las variables en cada paso de tiempo, descubriendo dependencias interactivas complejas entre las diferentes series del sistema.
+          </p>
         </div>
 
-          <div style="font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin-bottom: 12px;">
-            2. Ecuaciones Formales y Explicación Exhaustiva por Fórmula:
+        <!-- 3. Proyección Temporal -->
+        <div class="footer-card" onclick="filterDiagram('core')" style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 14px 16px; cursor: pointer;">
+          <div class="footer-card-header" style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="font-mono" style="font-size: 10.5px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 6px; border-radius: 4px;">03</span>
+            <h6 class="footer-title" style="font-size: 13px; font-weight: 800; color: #09090b;">Proyección Temporal</h6>
           </div>
+          <p class="footer-desc" style="font-size: 11.5px; color: #71717a; line-height: 1.5; margin: 0;">
+            Mapea directamente la longitud histórica <span class="font-mono font-bold" style="color: #09090b;">L</span> al horizonte de predicción <span class="font-mono font-bold" style="color: #09090b;">H</span> de forma lineal y ultra rápida.
+          </p>
+        </div>
 
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <!-- FÓRMULA 1: TIME-MIXING                                         -->
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <div style="background: #ffffff; border: 1.5px solid #bfdbfe; border-left: 6px solid #2563eb; border-radius: 18px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(37, 99, 235, 0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="width: 24px; height: 24px; border-radius: 50%; background: #2563eb; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">1</span>
-                <span style="font-size: 14px; font-weight: 900; color: #1e40af; text-transform: uppercase; letter-spacing: 0.02em;">Mezclado Temporal (Time-Mixing)</span>
-              </div>
-              <span class="badge-pill blue" style="font-size: 10.5px; padding: 3px 10px;">Eje de Tiempo • Intra-Serie</span>
-            </div>
-
-            <!-- Ecuación KaTeX -->
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 17px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center;">
-              $$\mathbf{X}_{*} = \mathbf{X} + \Big( \text{MLP}_{\text{time}}\big(\text{LayerNorm}(\mathbf{X})^\top\big) \Big)^\top$$
-            </div>
-
-            <!-- Intuición -->
-            <p style="font-size: 12.5px; color: #1e293b; line-height: 1.55; margin: 8px 0 10px 0; background: #eff6ff; padding: 8px 12px; border-radius: 10px; border-left: 3px solid #3b82f6;">
-              <strong>🎯 ¿Qué hace?:</strong> Extrae la inercia, ciclos circadianos y tendencias históricas de cada serie temporal de forma independiente. No mezcla información entre canales, evitando que el ruido de un sensor contamine a otro.
-            </p>
-
-            <!-- Desglose Término a Término -->
-            <div style="margin-top: 10px; font-size: 12.5px; color: #334155; line-height: 1.65;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">📖 Desglose término a término:</strong>
-              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                <li>
-                  <span style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">X</span>: Tensor de entrada histórico compuesto por <span class="font-mono font-bold">B</span> muestras en el lote, <span class="font-mono font-bold">T</span> pasos de tiempo pasados observados y <span class="font-mono font-bold">C</span> variables continuas (dimensión <span class="font-mono">B × T × C</span>).
-                </li>
-                <li>
-                  <span style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">LayerNorm(X)</span>: Normalización por capas aplicada sobre las características. Estandariza la distribución con media 0 y varianza 1 para cada muestra, eliminando distorsiones debidas a diferencias de escala física entre sensores (p. ej. temperaturas de 20°C vs presiones de 101,325 Pa).
-                </li>
-                <li>
-                  <span style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">(·)ᵀ</span> (Primera Transposición): Permuta los dos últimos ejes del tensor: <span class="font-mono font-bold">(B, T, C) → (B, C, T)</span>. Esto sitúa la dimensión del tiempo <span class="font-mono font-bold">T</span> como la dimensión vectorial final, permitiendo que una red neuronal densa estándar la procese como un vector de características continuas.
-                </li>
-                <li>
-                  <span style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">MLP_tiempo</span>: Perceptrón multicapa totalmente conectado compuesto por <span class="font-mono font-bold">FC(T → d_t) → ReLU / GELU → Dropout → FC(d_t → T)</span>. Sus parámetros de peso se comparten (<em>weight-sharing</em>) idénticamente entre los <span class="font-mono font-bold">C</span> canales, reduciendo el número de parámetros libres y previniendo el sobreajuste.
-                </li>
-                <li>
-                  <span style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">(·)ᵀ</span> (Segunda Transposición): Devuelve el tensor procesado a su orientación original: <span class="font-mono font-bold">(B, C, T) → (B, T, C)</span>, alineándolo nuevamente con el eje temporal estándar.
-                </li>
-                <li>
-                  <span style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">+ X</span> (Conexión Residual): Suma punto a punto la entrada histórica original (<em>Skip Connection</em>). Garantiza que el gradiente fluya directamente hacia atrás durante el entrenamiento (<em>Backpropagation</em>) y previene la degradación de la señal en modelos profundos.
-                </li>
-                <li>
-                  <span style="background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">X_*</span>: Tensor resultante enriquecido con patrones temporales univariantes.
-                </li>
-              </ul>
-            </div>
-
-            <!-- Dimensión y ventaja -->
-            <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; font-size: 11.5px;">
-              <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;">
-                Dimensión: (B, T, C) → (B, T, C)
-              </span>
-              <span style="background: #eff6ff; color: #1d4ed8; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                ✓ Complejidad lineal O(T) frente a O(T²) de Transformers
-              </span>
-            </div>
+        <!-- 4. Atención + FFN -->
+        <div class="footer-card" onclick="filterDiagram('head')" style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 14px 16px; cursor: pointer;">
+          <div class="footer-card-header" style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+            <span class="font-mono" style="font-size: 10.5px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 6px; border-radius: 4px;">04</span>
+            <h6 class="footer-title" style="font-size: 13px; font-weight: 800; color: #09090b;">Auto-Atención + FFN</h6>
           </div>
-
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <!-- FÓRMULA 2: FEATURE-MIXING                                      -->
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <div style="background: #ffffff; border: 1.5px solid #fde68a; border-left: 6px solid #d97706; border-radius: 18px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(217, 119, 6, 0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="width: 24px; height: 24px; border-radius: 50%; background: #d97706; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">2</span>
-                <span style="font-size: 14px; font-weight: 900; color: #92400e; text-transform: uppercase; letter-spacing: 0.02em;">Mezclado de Variables (Feature-Mixing)</span>
-              </div>
-              <span class="badge-pill amber" style="font-size: 10.5px; padding: 3px 10px;">Eje de Canales • Inter-Serie</span>
-            </div>
-
-            <!-- Ecuación KaTeX -->
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 17px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center;">
-              $$\mathbf{Y} = \mathbf{X}_{*} + \text{MLP}_{\text{feat}}\big(\text{LayerNorm}(\mathbf{X}_{*})\big)$$
-            </div>
-
-            <!-- Intuición -->
-            <p style="font-size: 12.5px; color: #1e293b; line-height: 1.55; margin: 8px 0 10px 0; background: #fffbeb; padding: 8px 12px; border-radius: 10px; border-left: 3px solid #d97706;">
-              <strong>🎯 ¿Qué hace?:</strong> Conecta los canales simultáneamente para cada instante de tiempo. Aprende leyes físicas y correlaciones entre variables (p. ej. "alta humedad + baja presión presagian lluvia inminente").
-            </p>
-
-            <!-- Desglose Término a Término -->
-            <div style="margin-top: 10px; font-size: 12.5px; color: #334155; line-height: 1.65;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">📖 Desglose término a término:</strong>
-              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                <li>
-                  <span style="background: #fefce8; color: #b45309; border: 1px solid #fde68a; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">X_*</span>: Tensor intermedio que ya incorpora el contexto dinámico temporal extraído en el paso anterior.
-                </li>
-                <li>
-                  <span style="background: #fefce8; color: #b45309; border: 1px solid #fde68a; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">LayerNorm(X_*)</span>: Estabiliza numéricamente las representaciones intermedias generadas por Time-Mixing antes de cruzarlas entre los diferentes sensores.
-                </li>
-                <li>
-                  <span style="background: #fefce8; color: #b45309; border: 1px solid #fde68a; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">MLP_caract</span>: Perceptrón multicapa denso aplicado a lo largo del eje de características <span class="font-mono font-bold">C</span>: <span class="font-mono font-bold">FC(C → d_c) → ReLU / GELU → Dropout → FC(d_c → C)</span>. Sus pesos se comparten en todos los instantes de tiempo <span class="font-mono font-bold">T</span>, aprendiendo relaciones multivariables invariantes en el tiempo.
-                </li>
-                <li>
-                  <span style="background: #fefce8; color: #b45309; border: 1px solid #fde68a; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">+ X_*</span> (Segunda Conexión Residual): Permite a la red decidir mediante aprendizaje residual cuánta información multivariable mezclar y cuánta mantener de la señal temporal pura.
-                </li>
-                <li>
-                  <span style="background: #fefce8; color: #b45309; border: 1px solid #fde68a; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Y</span>: Salida completa del bloque TSMixer, con conocimiento temporal e inter-variable integrado.
-                </li>
-              </ul>
-            </div>
-
-            <!-- Dimensión y ventaja -->
-            <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; font-size: 11.5px;">
-              <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;">
-                Dimensión: (B, T, C) → (B, T, C)
-              </span>
-              <span style="background: #fefce8; color: #854d0e; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                ✓ Desacopla la complejidad cruzada en dos pasos modulares ortogonales
-              </span>
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <!-- FÓRMULA 3: TEMPORAL PROJECTION                                 -->
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <div style="background: #ffffff; border: 1.5px solid #a7f3d0; border-left: 6px solid #059669; border-radius: 18px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(5, 150, 105, 0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="width: 24px; height: 24px; border-radius: 50%; background: #059669; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">3</span>
-                <span style="font-size: 14px; font-weight: 900; color: #065f46; text-transform: uppercase; letter-spacing: 0.02em;">Capa de Proyección Temporal (Temporal Projection)</span>
-              </div>
-              <span class="badge-pill emerald" style="font-size: 10.5px; padding: 3px 10px;">Mapeo Directo • Horizonte L → H</span>
-            </div>
-
-            <!-- Ecuación KaTeX -->
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 17px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center;">
-              $$\hat{\mathbf{Y}} = \Big( \mathbf{W}_{\text{out}} \mathbf{Y}^\top + \mathbf{b}_{\text{out}} \Big)^\top \quad \text{donde} \quad \mathbf{W}_{\text{out}} \in \mathbb{R}^{H \times L}, \quad \mathbf{b}_{\text{out}} \in \mathbb{R}^H$$
-            </div>
-
-            <!-- Intuición -->
-            <p style="font-size: 12.5px; color: #1e293b; line-height: 1.55; margin: 8px 0 10px 0; background: #ecfdf5; padding: 8px 12px; border-radius: 10px; border-left: 3px solid #059669;">
-              <strong>🎯 ¿Qué hace?:</strong> Estira y proyecta los <span class="font-mono font-bold">L</span> pasos históricos observados hacia los <span class="font-mono font-bold">H</span> pasos futuros de pronóstico de un solo golpe, eliminando la necesidad de predicciones iterativas paso a paso.
-            </p>
-
-            <!-- Desglose Término a Término -->
-            <div style="margin-top: 10px; font-size: 12.5px; color: #334155; line-height: 1.65;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">📖 Desglose término a término:</strong>
-              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                <li>
-                  <span style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Yᵀ</span>: Transpone el tensor de salida procesado por los bloques TSMixer: <span class="font-mono font-bold">(B, L, C) → (B, C, L)</span> para que la dimensión histórica <span class="font-mono font-bold">L</span> coincida con la entrada del operador lineal.
-                </li>
-                <li>
-                  <span style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">W_out</span>: Matriz densa de pesos aprendibles de dimensión <span class="font-mono font-bold">H × L</span>. Cada fila define una combinación lineal de toda la ventana histórica para generar exactamente el valor predicho en el paso futuro <span class="font-mono font-bold">h ∈ {1, …, H}</span>.
-                </li>
-                <li>
-                  <span style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">b_out</span>: Vector de sesgo (<em>bias</em>) de tamaño <span class="font-mono font-bold">H</span> que ajusta el nivel base (media o tendencia de fondo) del pronóstico proyectado.
-                </li>
-                <li>
-                  <span style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">(·)ᵀ</span> (Transposición de Salida): Devuelve el tensor resultante a la forma canónica de pronóstico: <span class="font-mono font-bold">(B, C, H) → (B, H, C)</span>.
-                </li>
-                <li>
-                  <span style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Ŷ</span>: Tensor final de predicción multivariante para los <span class="font-mono font-bold">H</span> horizontes temporales futuros y <span class="font-mono font-bold">C</span> variables.
-                </li>
-              </ul>
-            </div>
-
-            <!-- Dimensión y ventaja -->
-            <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; font-size: 11.5px;">
-              <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;">
-                Dimensión: (B, L, C) → (B, H, C)
-              </span>
-              <span style="background: #ecfdf5; color: #047857; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                ✓ Evita el error acumulativo (error drift) de los modelos autorregresivos
-              </span>
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <!-- FÓRMULA 4: CAPA LINEAL (C, H)                                  -->
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <div style="background: #ffffff; border: 1.5px solid #e9d5ff; border-left: 6px solid #9333ea; border-radius: 18px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(147, 51, 234, 0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="width: 24px; height: 24px; border-radius: 50%; background: #9333ea; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">4</span>
-                <span style="font-size: 14px; font-weight: 900; color: #6b21a8; text-transform: uppercase; letter-spacing: 0.02em;">Capa Lineal de Canal (Linear C, H)</span>
-              </div>
-              <span class="badge-pill" style="font-size: 10.5px; padding: 3px 10px; background: #faf5ff; color: #7e22ce; border: 1px solid #d8b4fe;">Proyección de Canales</span>
-            </div>
-
-            <!-- Ecuación KaTeX -->
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 17px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center;">
-              $$\mathbf{Z} = \text{Linear}_{(C, H)}(\mathbf{X}) \quad \Longleftrightarrow \quad \mathbf{Z}_{b, c, :} = \mathbf{W}_c \cdot \mathbf{X}_{b, c, :} + \mathbf{b}_c$$
-            </div>
-
-            <!-- Intuición -->
-            <p style="font-size: 12.5px; color: #1e293b; line-height: 1.55; margin: 8px 0 10px 0; background: #faf5ff; padding: 8px 12px; border-radius: 10px; border-left: 3px solid #9333ea;">
-              <strong>🎯 ¿Qué hace?:</strong> Ajusta individualmente la proyección temporal para cada uno de los <span class="font-mono font-bold">C</span> canales, reconociendo que cada variable (temperatura, lluvia, demanda eléctrica) tiene diferentes tasas de cambio temporal.
-            </p>
-
-            <!-- Desglose Término a Término -->
-            <div style="margin-top: 10px; font-size: 12.5px; color: #334155; line-height: 1.65;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">📖 Desglose término a término:</strong>
-              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                <li>
-                  <span style="background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">X[canal]</span>: Vector que contiene la serie temporal de <span class="font-mono font-bold">T</span> pasos del canal <span class="font-mono font-bold">c</span> para la muestra <span class="font-mono font-bold">b</span>.
-                </li>
-                <li>
-                  <span style="background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">W_c</span>: Matriz de transformación lineal asignada a mapear la historia de longitud <span class="font-mono font-bold">T</span> al horizonte <span class="font-mono font-bold">H</span> (tamaño <span class="font-mono">H × T</span>) para ese canal en particular.
-                </li>
-                <li>
-                  <span style="background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">b_c</span>: Término de sesgo independiente que retiene la media propia del canal.
-                </li>
-                <li>
-                  <span style="background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Z</span>: Tensor proyectado por canal a dimensión <span class="font-mono font-bold">(B, C, H)</span>, listo para ser enriquecido por el módulo de auto-atención superior.
-                </li>
-              </ul>
-            </div>
-
-            <!-- Dimensión y ventaja -->
-            <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; font-size: 11.5px;">
-              <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;">
-                Dimensión: (B, C, T) → (B, C, H)
-              </span>
-              <span style="background: #faf5ff; color: #6b21a8; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                ✓ Flexibilidad de escala independiente para cada variable
-              </span>
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <!-- FÓRMULA 5: AUTO-ATENCIÓN MULTI-CABEZAL                         -->
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-left: 6px solid #ea580c; border-radius: 18px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(234, 88, 12, 0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="width: 24px; height: 24px; border-radius: 50%; background: #ea580c; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">5</span>
-                <span style="font-size: 14px; font-weight: 900; color: #9a3412; text-transform: uppercase; letter-spacing: 0.02em;">Auto-Atención Multi-Cabezal (Multi-Head Attention)</span>
-              </div>
-              <span class="badge-pill" style="font-size: 10.5px; padding: 3px 10px; background: #fff7ed; color: #c2410c; border: 1px solid #fdba74;">Correlaciones Globales</span>
-            </div>
-
-            <!-- Ecuación KaTeX -->
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 17px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center;">
-              $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$$
-            </div>
-
-            <!-- Intuición -->
-            <p style="font-size: 12.5px; color: #1e293b; line-height: 1.55; margin: 8px 0 10px 0; background: #fff7ed; padding: 8px 12px; border-radius: 10px; border-left: 3px solid #ea580c;">
-              <strong>🎯 ¿Qué hace?:</strong> Mide el grado de afinidad dinámica entre cualquier instante temporal del pasado y el horizonte futuro. Si un evento atípico hace 5 días se asemeja al momento actual, la atención le asigna mayor peso probabilístico.
-            </p>
-
-            <!-- Desglose Término a Término -->
-            <div style="margin-top: 10px; font-size: 12.5px; color: #334155; line-height: 1.65;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">📖 Desglose término a término:</strong>
-              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                <li>
-                  <span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Q</span>: Proyección lineal de consulta (<em>Query</em> = lo que buscamos estimar: <span class="font-mono">Q = X · W^Q</span>). Representa la pregunta "¿qué condiciones buscamos evaluar?".
-                </li>
-                <li>
-                  <span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">K</span>: Proyección lineal de claves de contexto (<em>Key</em> = catálogo histórico disponible: <span class="font-mono">K = X · W^K</span>).
-                </li>
-                <li>
-                  <span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">QKᵀ</span>: Matriz de afinidad que cuantifica mediante producto escalar la similitud entre cada consulta y todas las claves del pasado.
-                </li>
-                <li>
-                  <span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">1 / √d_k</span>: Factor de escala dimensional (donde <span class="font-mono font-bold">d_k</span> es la dimensión del cabezal) que previene saturación en el softmax y estabiliza los gradientes.
-                </li>
-                <li>
-                  <span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">softmax(·)</span>: Función exponencial normalizada que transforma las afinidades en probabilidades que suman exactamente 1.0 (100% de atención).
-                </li>
-                <li>
-                  <span style="background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">V</span>: Valores reales de las señales de la serie temporal (<span class="font-mono">V = X · W^V</span>), ponderados directamente por los coeficientes probabilísticos de atención.
-                </li>
-              </ul>
-            </div>
-
-            <!-- Dimensión y ventaja -->
-            <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; font-size: 11.5px;">
-              <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;">
-                Dimensión: (B, H, d_k)
-              </span>
-              <span style="background: #fff7ed; color: #c2410c; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                ✓ Captura dependencias de largo alcance no acotadas por ventanas locales
-              </span>
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <!-- FÓRMULA 6: FFN DE PROYECCIÓN                                   -->
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-left: 6px solid #334155; border-radius: 18px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(51, 65, 85, 0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="width: 24px; height: 24px; border-radius: 50%; background: #334155; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">6</span>
-                <span style="font-size: 14px; font-weight: 900; color: #1e293b; text-transform: uppercase; letter-spacing: 0.02em;">Red Densa de Alimentación Hacia Adelante (FFN)</span>
-              </div>
-              <span class="badge-pill" style="font-size: 10.5px; padding: 3px 10px; background: #f8fafc; color: #334155; border: 1px solid #cbd5e1;">Refinamiento No Lineal</span>
-            </div>
-
-            <!-- Ecuación KaTeX -->
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 17px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center;">
-              $$\text{FFN}(\mathbf{x}) = \mathbf{W}_2 \cdot \text{ReLU}(\mathbf{W}_1 \cdot \mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2$$
-            </div>
-
-            <!-- Intuición -->
-            <p style="font-size: 12.5px; color: #1e293b; line-height: 1.55; margin: 8px 0 10px 0; background: #f8fafc; padding: 8px 12px; border-radius: 10px; border-left: 3px solid #334155;">
-              <strong>🎯 ¿Qué hace?:</strong> Aplica una expansión dimensional intermedia con activación no lineal para filtrar ruido y sintetizar patrones complejos antes de emitir los valores numéricos finales.
-            </p>
-
-            <!-- Desglose Término a Término -->
-            <div style="margin-top: 10px; font-size: 12.5px; color: #334155; line-height: 1.65;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">📖 Desglose término a término:</strong>
-              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                <li>
-                  <span style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">x</span>: Vector de características intermedias proveniente de la capa previa.
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">W₁ y b₁</span>: Pesos y sesgo de la primera proyección lineal que expande la señal a un espacio intermedio ampliado (con matriz de dimensión <span class="font-mono font-bold">d_ff × d_model</span> y sesgo <span class="font-mono font-bold">b₁</span>, usualmente <span class="font-mono font-bold">d_ff = 2× o 4× d_model</span>), aumentando la capacidad de representación.
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">ReLU(·)</span>: Función de activación no lineal <span class="font-mono font-bold">max(0, z)</span> que introduce curvatura matemática y elimina componentes negativas irrelevantes, promoviendo representaciones dispersas y eficientes.
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">W₂ y b₂</span>: Pesos y sesgo de la segunda proyección lineal (con matriz de dimensión <span class="font-mono font-bold">d_model × d_ff</span> y sesgo <span class="font-mono font-bold">b₂</span>) que comprime de nuevo el espacio al tamaño original del modelo.
-                </li>
-              </ul>
-            </div>
-
-            <!-- Dimensión y ventaja -->
-            <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; font-size: 11.5px;">
-              <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;">
-                Dimensión: (B, H, C)
-              </span>
-              <span style="background: #f1f5f9; color: #1e293b; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                ✓ Aumenta la capacidad de aproximación universal del sistema
-              </span>
-            </div>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <!-- FÓRMULA 7: ADD & NORM (CONEXIÓN RESIDUAL + LAYERNORM)           -->
-          <!-- ═══════════════════════════════════════════════════════════════ -->
-          <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-left: 6px solid #0f172a; border-radius: 18px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="width: 24px; height: 24px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">7</span>
-                <span style="font-size: 14px; font-weight: 900; color: #0f172a; text-transform: uppercase; letter-spacing: 0.02em;">Añadir y Normalizar (Add & LayerNorm)</span>
-              </div>
-              <span class="badge-pill" style="font-size: 10.5px; padding: 3px 10px; background: #0f172a; color: #ffffff;">Estabilización de Gradientes</span>
-            </div>
-
-            <!-- Ecuación KaTeX -->
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 17px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center;">
-              $$\text{Salida} = \text{LayerNorm}\Big(\mathbf{x} + \text{Subcapa}(\mathbf{x})\Big) = \frac{(\mathbf{x} + \Delta\mathbf{x}) - \mu}{\sqrt{\sigma^2 + \epsilon}} \odot \boldsymbol{\gamma} + \boldsymbol{\beta}$$
-            </div>
-
-            <!-- Intuición -->
-            <p style="font-size: 12.5px; color: #1e293b; line-height: 1.55; margin: 8px 0 10px 0; background: #f1f5f9; padding: 8px 12px; border-radius: 10px; border-left: 3px solid #0f172a;">
-              <strong>🎯 ¿Qué hace?:</strong> Asegura que el modelo no sufra el problema del gradiente desvaneciente o explosivo. Cada bloque solo necesita aprender el residuo de corrección $\Delta\mathbf{x}$, haciendo que el entrenamiento converja mucho más rápido.
-            </p>
-
-            <!-- Desglose Término a Término -->
-            <div style="margin-top: 10px; font-size: 12.5px; color: #334155; line-height: 1.65;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">📖 Desglose término a término:</strong>
-              <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-                <li>
-                  <span style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">x</span>: Entrada original que pasa por el camino directo de identidad (<em>Skip Connection</em>).
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">Subcapa(x)</span>: El refinamiento o cambio marginal (<span class="font-mono font-bold">Δx</span>) calculado por la subcapa correspondiente (Time-Mixing, Feature-Mixing, o Atención).
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">LayerNorm(·)</span>: Normalización por capas aplicada a la suma residual para estabilizar la distribución de las activaciones.
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">μ y σ²</span>: Media y varianza muestral calculadas a través de la dimensión de las características para cada secuencia individual en el lote.
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">ε (Épsilon)</span>: Constante infinitesimal de suavizado numérico (<span class="font-mono font-bold">≈ 10⁻⁵</span>) añadida para prevenir divisiones indeterminadas por cero cuando la varianza es nula.
-                </li>
-                <li>
-                  <span style="background: #f1f5f9; color: #0f172a; border: 1px solid #94a3b8; font-weight: 800; padding: 2px 7px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">γ y β (Gamma y Beta)</span>: Vectores de parámetros aprendibles de escala y desplazamiento que permiten a la red calibrar y restaurar la expresividad si la normalización estricta resulta limitante.
-                </li>
-              </ul>
-            </div>
-
-            <!-- Dimensión y ventaja -->
-            <div style="display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; font-size: 11.5px;">
-              <span style="background: #f1f5f9; color: #475569; padding: 4px 10px; border-radius: 8px; font-family: 'JetBrains Mono', monospace;">
-                Dimensión: Invariante a la entrada
-              </span>
-              <span style="background: #f1f5f9; color: #0f172a; padding: 4px 10px; border-radius: 8px; font-weight: 700;">
-                ✓ Permite apilar decenas de capas profundas sin divergencia numérica
-              </span>
-            </div>
-          </div>
-
-          <!-- Glosario de símbolos -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 16px;">
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; font-size: 12px; color: #334155;">
-              <strong class="font-mono" style="color: #2563eb;">(·)ᵀ</strong>: Transponer (girar 90°) para procesar la historia temporal.
-            </div>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; font-size: 12px; color: #334155;">
-              <strong class="font-mono" style="color: #059669;">+ X</strong>: Salto residual para conservar la información pasada intacta.
-            </div>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; font-size: 12px; color: #334155;">
-              <strong class="font-mono" style="color: #d97706;">LayerNorm</strong>: Calibrar sensores y variables heterogéneas a media 0 y varianza 1.
-            </div>
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; font-size: 12px; color: #334155;">
-              <strong class="font-mono" style="color: #9333ea;">W_out</strong>: Proyección directa del pasado de longitud L al horizonte H.
-            </div>
-          </div>
+          <p class="footer-desc" style="font-size: 11.5px; color: #71717a; line-height: 1.5; margin: 0;">
+            Pondera selectivamente momentos clave del pasado con atención multi-cabezal, enriqueciendo la proyección antes de emitir el pronóstico multivariante final.
+          </p>
         </div>
 
       </div>
 
-      <!-- 3. Desglose Detallado de Fases (1: Entrada, 2: Bloque Central, 3: Salida) -->
-      <div style="display: flex; flex-direction: column; gap: 14px;">
-        
-        <!-- Fase 1: Entrada -->
-        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="width: 26px; height: 26px; border-radius: 50%; background: #0f172a; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">1</span>
-              <h4 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin: 0;">FASE 1: ENTRADA HISTÓRICA (ABAJO)</h4>
-            </div>
-            <span class="badge-pill badge-input" style="font-size: 10.5px;">Tensor Inicial</span>
-          </div>
-          <p style="font-size: 13px; color: #475569; margin-bottom: 10px; line-height: 1.5;">
-            Entra una matriz con los datos históricos de lookback. Su forma de tensor es:
-          </p>
-          <div class="font-mono" style="background: #fff1f2; color: #9f1239; border: 1px solid #fecdd3; border-radius: 10px; padding: 8px 14px; font-size: 13px; font-weight: 800; display: inline-block;">
-            [Lote, Tiempo, Variables] → (Batch, T, C)
-          </div>
+      <!-- Barra de Tensores y Shapes -->
+      <div class="tensor-bar" style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 12px; padding: 12px 18px; color: #18181b; margin-top: 12px;">
+        <div style="display: flex; gap: 18px; flex-wrap: wrap;">
+          <span><strong>Batch</strong>: Lote</span>
+          <span><strong>T (o L)</strong>: Historia</span>
+          <span><strong>C</strong>: Canales</span>
+          <span><strong>H</strong>: Horizonte</span>
         </div>
-
-        <!-- Fase 2: Bloque Central -->
-        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="width: 26px; height: 26px; border-radius: 50%; background: #ea580c; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">2</span>
-              <h4 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin: 0;">FASE 2: BLOQUE CENTRAL TSMIXER (ITERATIVO Nx)</h4>
-            </div>
-            <span class="badge-pill badge-core" style="font-size: 10.5px;">Núcleo MLP</span>
-          </div>
-          <p style="font-size: 13px; color: #475569; margin-bottom: 12px; line-height: 1.5;">
-            El bloque TSMixer se repite secuencialmente realizando dos mezclas ortogonales con conexiones residuales:
-          </p>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
-            <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 12px; padding: 12px;">
-              <strong style="color: #0369a1; font-size: 12.5px; display: block; margin-bottom: 4px;">A. Time-Mixing (Temporal):</strong>
-              <span style="font-size: 12px; color: #475569; line-height: 1.45; display: block;">
-                Reorganiza para procesar el tiempo con una pequeña red neuronal MLP univariante y suma la entrada original mediante skip connection.
-              </span>
-            </div>
-            <div style="background: #fefce8; border: 1px solid #fef08a; border-radius: 12px; padding: 12px;">
-              <strong style="color: #854d0e; font-size: 12.5px; display: block; margin-bottom: 4px;">B. Feature-Mixing (Canales):</strong>
-              <span style="font-size: 12px; color: #475569; line-height: 1.45; display: block;">
-                Mantiene la dimensión temporal y aprende relaciones cruzadas entre sensores para cada instante de tiempo con otra red MLP.
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fase 3: Salida -->
-        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 18px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <span style="width: 26px; height: 26px; border-radius: 50%; background: #059669; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">3</span>
-              <h4 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin: 0;">FASE 3: SALIDA Y PREDICCIÓN FINAL (ARRIBA)</h4>
-            </div>
-            <span class="badge-pill badge-output" style="font-size: 10.5px;">Horizonte H</span>
-          </div>
-          <p style="font-size: 13px; color: #475569; margin-bottom: 10px; line-height: 1.5;">
-            La proyección temporal y el cabezal de atención estiran los datos para emitir directamente las predicciones multivariantes:
-          </p>
-          <div class="font-mono" style="background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; border-radius: 10px; padding: 8px 14px; font-size: 13px; font-weight: 800; display: inline-block;">
-            [Lote, Tiempo Futuro, Variables] → (Batch, H, C)
-          </div>
-        </div>
-
+        <span style="font-family: 'Inter', sans-serif; font-weight: 700; color: #09090b; background: #ffffff; padding: 3px 10px; border-radius: 6px; border: 1px solid #e4e4e7; font-size: 11px;">
+          TSMixer Formal Spec
+        </span>
       </div>
-
-    </section>
+    </footer>
 
     <!-- ═══════════════════════════════════════════════════════════════════ -->
-    <!-- SECCIÓN: REPRODUCTOR DE VIDEO DE LA ARQUITECTURA TS-MIXER         -->
+    <!-- PANEL DE CONTENIDO EXTENDIDO (OCULTO POR DEFECTO — BOTONES TOGGLE)  -->
     <!-- ═══════════════════════════════════════════════════════════════════ -->
-    <section class="video-showcase-card" id="video-section">
-      <div class="video-showcase-header">
-        <div class="video-header-info">
-          <div class="video-icon-badge">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v12h16V6H4zm6 2.5l6 3.5-6 3.5v-7z"/>
+    <section class="collapsible-hub" id="hub-complementary">
+      <div class="hub-header">
+        <div class="hub-title-group">
+          <div class="hub-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+              <polyline points="2 17 12 22 22 17"/>
+              <polyline points="2 12 12 17 22 12"/>
             </svg>
           </div>
           <div>
-            <h2 class="video-title">Video Demostrativo — Arquitectura TSMixer</h2>
-            <p class="video-subtitle">Explicación visual en alta definición del funcionamiento, módulos y flujo de tensores</p>
+            <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; display: block;">Módulos Complementarios</span>
+            <h2 style="font-size: 16.5px; font-weight: 900; color: #09090b; margin-top: 1px; letter-spacing: -0.01em;">Documentación, Fórmulas & Video</h2>
           </div>
         </div>
 
-        <div class="video-header-actions">
-          <span style="font-size: 11px; font-weight: 700; background: rgba(16, 185, 129, 0.15); color: #34d399; padding: 4px 10px; border-radius: 9999px; border: 1px solid rgba(52, 211, 153, 0.3);">
-            ● MP4 HD 1080p
-          </span>
-          <button class="btn-fullscreen-top" onclick="triggerFullscreen()">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        <div class="hub-actions">
+          <button class="btn-hub-toggle" id="btn-hub-analogia" onclick="toggleSection('analogia')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
             </svg>
-            Ver en Pantalla Completa
+            <span id="label-hub-analogia">Mostrar Analogía</span>
+          </button>
+          <button class="btn-hub-toggle" id="btn-hub-formulas" onclick="toggleSection('formulas')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 4H6l6 8-6 8h12"/>
+            </svg>
+            <span id="label-hub-formulas">Mostrar Fórmulas</span>
+          </button>
+          <button class="btn-hub-toggle" id="btn-hub-video" onclick="toggleSection('video')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+            <span id="label-hub-video">Mostrar Video</span>
+          </button>
+          <button class="btn-hub-toggle" id="btn-hub-all" onclick="toggleAllSections()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="7 13 12 18 17 13"/>
+              <polyline points="7 6 12 11 17 6"/>
+            </svg>
+            <span id="label-hub-all">Expandir Todo</span>
           </button>
         </div>
       </div>
+
+      <!-- ───────────────────────────────────────────────────────────── -->
+      <!-- TARJETA 1: ANALOGÍA FUNDAMENTAL (HOJA DE CÁLCULO)             -->
+      <!-- ───────────────────────────────────────────────────────────── -->
+      <article class="collapsible-card analogia-card" id="card-analogia">
+        <button class="collapsible-header-btn" onclick="toggleSection('analogia')" aria-expanded="false" aria-controls="content-analogia">
+          <div class="collapsible-header-left">
+            <div class="section-icon-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+                <line x1="9" y1="21" x2="9" y2="9"/>
+              </svg>
+            </div>
+            <div>
+              <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; display: block;">Concepto Intuitivo</span>
+              <h3 style="font-size: 15px; font-weight: 900; color: #09090b; margin-top: 1px;">1. Analogía Fundamental: La Hoja de Cálculo</h3>
+              <p style="font-size: 11.5px; color: #71717a; margin-top: 2px;">Desacoplamiento ortogonal: lectura temporal hacia abajo vs lectura de variables hacia los lados</p>
+            </div>
+          </div>
+          <div class="collapsible-header-right">
+            <span class="status-pill-badge pill-hidden" id="pill-analogia">
+              <span>○</span> Oculto — Clic para expandir
+            </span>
+            <div class="chevron-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+
+        <div class="collapsible-content" id="content-analogia" style="display: none;">
+          <!-- 1. Analogía Fundamental: La Hoja de Cálculo y las dos lecturas -->
+          <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 16px; padding: 18px 20px; margin-bottom: 16px;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #71717a;">Analogía Conceptual</span>
+                <h4 style="font-size: 15px; font-weight: 800; color: #09090b; margin-top: 2px;">La matriz de datos y sus dos lecturas ortogonales</h4>
+              </div>
+              <span style="font-size: 10.5px; font-weight: 700; color: #18181b; background: #ffffff; border: 1px solid #e4e4e7; padding: 3px 10px; border-radius: 6px;">
+                Explicación Intuitiva
+              </span>
+            </div>
+            <p style="color: #3f3f46; font-size: 13px; line-height: 1.6; margin-bottom: 16px;">
+              Imagina una hoja de cálculo donde las <strong>filas son los pasos temporales</strong> y las <strong>columnas son variables</strong> (temperatura, lluvia, viento, ventas). TSMixer desacopla el modelado en dos pasadas independientes:
+            </p>
+
+            <!-- Dos Tarjetas de Lectura -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 16px;">
+              <div style="background: #ffffff; border: 1px solid #e4e4e7; border-top: 3px solid #09090b; border-radius: 12px; padding: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 10.5px; font-weight: 800; color: #09090b; text-transform: uppercase; letter-spacing: 0.04em;">Lectura 1 • Eje Temporal</span>
+                  <span style="font-size: 10px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">↓ Vertical</span>
+                </div>
+                <h5 style="font-size: 13.5px; font-weight: 800; color: #09090b; margin-bottom: 4px;">Lee hacia abajo (el tiempo)</h5>
+                <p style="font-size: 12px; color: #52525b; line-height: 1.5; margin: 0;">
+                  Examina únicamente la historia pasada de cada variable por separado para aprender su inercia, ciclos y estacionalidad sin mezclar canales.
+                </p>
+              </div>
+
+              <div style="background: #ffffff; border: 1px solid #e4e4e7; border-top: 3px solid #71717a; border-radius: 12px; padding: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                  <span style="font-size: 10.5px; font-weight: 800; color: #71717a; text-transform: uppercase; letter-spacing: 0.04em;">Lectura 2 • Eje de Variables</span>
+                  <span style="font-size: 10px; font-weight: 800; background: #f4f4f5; color: #18181b; border: 1px solid #e4e4e7; padding: 2px 7px; border-radius: 4px;">→ Horizontal</span>
+                </div>
+                <h5 style="font-size: 13.5px; font-weight: 800; color: #09090b; margin-bottom: 4px;">Lee hacia los lados (las variables)</h5>
+                <p style="font-size: 12px; color: #52525b; line-height: 1.5; margin: 0;">
+                  Identifica cómo interactúan los factores entre sí en un mismo instante temporal, descubriendo dependencias cruzadas y leyes físicas simultáneas.
+                </p>
+              </div>
+            </div>
+
+            <!-- Simulación Visual de Matriz -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 12px; padding: 12px; overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 12px; text-align: center; font-family: 'JetBrains Mono', monospace;">
+                <thead>
+                  <tr style="border-bottom: 1.5px solid #e4e4e7; color: #71717a; font-size: 10.5px;">
+                    <th style="padding: 8px; text-align: left;">Paso Temporal</th>
+                    <th style="padding: 8px;">Temperatura (°C)</th>
+                    <th style="padding: 8px;">Humedad (%)</th>
+                    <th style="padding: 8px;">Viento (m/s)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #f4f4f5;">
+                    <td style="padding: 8px; text-align: left; color: #a1a1aa;">t - 2</td>
+                    <td style="padding: 8px; background: #f4f4f5; color: #09090b; font-weight: 700;">18.4° ↓</td>
+                    <td style="padding: 8px; color: #52525b;">62%</td>
+                    <td style="padding: 8px; color: #52525b;">3.2</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #f4f4f5;">
+                    <td style="padding: 8px; text-align: left; color: #a1a1aa;">t - 1</td>
+                    <td style="padding: 8px; background: #f4f4f5; color: #09090b; font-weight: 700;">17.1° ↓</td>
+                    <td style="padding: 8px; color: #52525b;">68%</td>
+                    <td style="padding: 8px; color: #52525b;">3.8</td>
+                  </tr>
+                  <tr style="background: #f4f4f5; font-weight: 800;">
+                    <td style="padding: 8px; text-align: left; color: #09090b;">Hoy (t)</td>
+                    <td style="padding: 8px; color: #09090b;">15.9°</td>
+                    <td style="padding: 8px; color: #09090b;">75%</td>
+                    <td style="padding: 8px; color: #09090b;">4.5</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="display: flex; gap: 16px; margin-top: 10px; font-size: 11px; color: #71717a; padding: 0 4px; flex-wrap: wrap;">
+                <span style="display: inline-flex; align-items: center; gap: 6px;">
+                  <span style="width: 8px; height: 8px; background: #09090b; border-radius: 2px;"></span>
+                  Lectura hacia abajo (Time-Mixing)
+                </span>
+                <span style="display: inline-flex; align-items: center; gap: 6px;">
+                  <span style="width: 8px; height: 8px; background: #71717a; border-radius: 2px;"></span>
+                  Lectura horizontal (Feature-Mixing)
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ───────────────────────────────────────────────────────────── -->
+      <!-- TARJETA 2: FORMULACIÓN MATEMÁTICA & 7 ECUACIONES FORMALES    -->
+      <!-- ───────────────────────────────────────────────────────────── -->
+      <article class="collapsible-card formulas-card" id="card-formulas">
+        <button class="collapsible-header-btn" onclick="toggleSection('formulas')" aria-expanded="false" aria-controls="content-formulas">
+          <div class="collapsible-header-left">
+            <div class="section-icon-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 4H6l6 8-6 8h12"/>
+              </svg>
+            </div>
+            <div>
+              <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; display: block;">Formulación Rigurosa & Receta</span>
+              <h3 style="font-size: 15px; font-weight: 900; color: #09090b; margin-top: 1px;">2. Ecuaciones y Lógica Matemática de TSMixer</h3>
+              <p style="font-size: 11.5px; color: #71717a; margin-top: 2px;">Receta conceptual desacoplada y 7 ecuaciones formales de Google Research con desglose término a término</p>
+            </div>
+          </div>
+          <div class="collapsible-header-right">
+            <span class="status-pill-badge pill-hidden" id="pill-formulas">
+              <span>○</span> Oculto — Clic para expandir
+            </span>
+            <div class="chevron-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+
+        <div class="collapsible-content" id="content-formulas" style="display: none; padding-top: 20px;">
+          <!-- 2. Dual-View: En palabras sencillas (Receta) vs Ecuaciones Formales -->
+          <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 16px; padding: 20px; margin-bottom: 20px;">
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; border-bottom: 1px solid #e4e4e7; padding-bottom: 12px;">
+              <span style="font-size: 11.5px; font-weight: 800; color: #09090b; text-transform: uppercase; letter-spacing: 0.06em; display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                Formulación Dual del Bloque Central
+              </span>
+              <span style="font-size: 10.5px; font-weight: 700; color: #18181b; background: #ffffff; padding: 3px 10px; border-radius: 6px; border: 1px solid #e4e4e7;">
+                Paper Oficial TSMixer • Google Research
+              </span>
+            </div>
+
+            <!-- Vista 1: En palabras sencillas (Receta) -->
+            <div style="margin-bottom: 18px;">
+              <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #71717a; margin-bottom: 10px;">
+                1. La lógica en lenguaje sencillo (receta paso a paso):
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+                
+                <div style="background: #ffffff; border: 1px solid #e4e4e7; border-top: 3px solid #09090b; border-radius: 12px; padding: 14px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                    <span style="font-size: 10px; font-weight: 800; color: #09090b; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      Paso 1 • Tiempo
+                    </span>
+                    <span class="font-mono" style="font-size: 9.5px; font-weight: 700; color: #71717a; background: #f4f4f5; padding: 1px 6px; border-radius: 4px;">Intra-Serie</span>
+                  </div>
+                  <div class="font-mono" style="font-size: 11.5px; font-weight: 700; color: #09090b; margin: 6px 0; background: #f4f4f5; padding: 6px 8px; border-radius: 6px; border: 1px solid #e4e4e7;">
+                    Paso 1 = Datos + Red_Temporal( Girar(Datos) )
+                  </div>
+                  <p style="font-size: 11.5px; color: #52525b; margin: 0; line-height: 1.5;">
+                    Gira la tabla 90° para leer la historia hacia abajo y suma los datos originales para no olvidar el pasado.
+                  </p>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #e4e4e7; border-top: 3px solid #52525b; border-radius: 12px; padding: 14px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                    <span style="font-size: 10px; font-weight: 800; color: #52525b; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+                      Paso 2 • Variables
+                    </span>
+                    <span class="font-mono" style="font-size: 9.5px; font-weight: 700; color: #71717a; background: #f4f4f5; padding: 1px 6px; border-radius: 4px;">Inter-Serie</span>
+                  </div>
+                  <div class="font-mono" style="font-size: 11.5px; font-weight: 700; color: #09090b; margin: 6px 0; background: #f4f4f5; padding: 6px 8px; border-radius: 6px; border: 1px solid #e4e4e7;">
+                    Paso 2 = Paso 1 + Red_Variables( Paso 1 )
+                  </div>
+                  <p style="font-size: 11.5px; color: #52525b; margin: 0; line-height: 1.5;">
+                    Lee la tabla normal para ver cómo se conectan las variables entre sí en el mismo instante de tiempo.
+                  </p>
+                </div>
+
+                <div style="background: #ffffff; border: 1px solid #e4e4e7; border-top: 3px solid #a1a1aa; border-radius: 12px; padding: 14px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                    <span style="font-size: 10px; font-weight: 800; color: #71717a; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                      Paso 3 • Futuro
+                    </span>
+                    <span class="font-mono" style="font-size: 9.5px; font-weight: 700; color: #71717a; background: #f4f4f5; padding: 1px 6px; border-radius: 4px;">Horizonte H</span>
+                  </div>
+                  <div class="font-mono" style="font-size: 11.5px; font-weight: 700; color: #09090b; margin: 6px 0; background: #f4f4f5; padding: 6px 8px; border-radius: 6px; border: 1px solid #e4e4e7;">
+                    Futuro = Capa_Lineal( Paso 2 )
+                  </div>
+                  <p style="font-size: 11.5px; color: #52525b; margin: 0; line-height: 1.5;">
+                    Estira los pasos históricos observados L y genera las H horas futuras de un solo golpe.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #71717a; margin-bottom: 12px;">
+              2. Ecuaciones Formales y Explicación Exhaustiva por Fórmula:
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- FÓRMULA 1: TIME-MIXING                                         -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">01</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span style="font-size: 13.5px; font-weight: 800; color: #09090b; letter-spacing: -0.01em;">Mezclado Temporal (Time-Mixing)</span>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #f4f4f5; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Eje de Tiempo • Intra-Serie</span>
+              </div>
+
+              <!-- Ecuación KaTeX -->
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; font-size: 16px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center; color: #09090b;">
+                $$\mathbf{X}_{*} = \mathbf{X} + \Big( \text{MLP}_{\text{time}}\big(\text{LayerNorm}(\mathbf{X})^\top\big) \Big)^\top$$
+              </div>
+
+              <!-- Intuición -->
+              <div style="background: #f4f4f5; border-left: 3px solid #18181b; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: #27272a; line-height: 1.55;">
+                <span style="font-weight: 800; color: #09090b; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Propósito:
+                </span> Extrae la inercia, ciclos circadianos y tendencias históricas de cada serie temporal de forma independiente. No mezcla información entre canales, evitando que el ruido de un sensor contamine a otro.
+              </div>
+
+              <!-- Desglose Término a Término -->
+              <div style="margin-top: 10px; font-size: 12px; color: #3f3f46; line-height: 1.6;">
+                <strong style="color: #09090b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Desglose de variables y operadores:
+                </strong>
+                <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">X</span>: Tensor de entrada histórico compuesto por <span class="font-mono font-bold">B</span> muestras en el lote, <span class="font-mono font-bold">T</span> pasos de tiempo pasados observados y <span class="font-mono font-bold">C</span> variables continuas (dimensión <span class="font-mono">B × T × C</span>).
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">LayerNorm(X)</span>: Normalización por capas aplicada sobre las características. Estandariza la distribución con media 0 y varianza 1 para cada muestra, eliminando distorsiones debidas a diferencias de escala física entre sensores.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">(·)ᵀ</span> (Primera Transposición): Permuta los dos últimos ejes del tensor: <span class="font-mono font-bold">(B, T, C) → (B, C, T)</span>. Esto sitúa la dimensión del tiempo <span class="font-mono font-bold">T</span> como la dimensión vectorial final, permitiendo que una red neuronal densa estándar la procese como un vector de características continuas.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">MLP_tiempo</span>: Perceptrón multicapa totalmente conectado compuesto por <span class="font-mono font-bold">FC(T → d_t) → ReLU / GELU → Dropout → FC(d_t → T)</span>. Sus parámetros de peso se comparten (<em>weight-sharing</em>) idénticamente entre los <span class="font-mono font-bold">C</span> canales, reduciendo drásticamente el número de parámetros libres y previniendo el sobreajuste.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">(·)ᵀ</span> (Segunda Transposición): Devuelve el tensor procesado a su orientación original: <span class="font-mono font-bold">(B, C, T) → (B, T, C)</span>, alineándolo nuevamente con el eje temporal estándar.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">+ X</span> (Conexión Residual): Suma punto a punto la entrada histórica original (<em>Skip Connection</em>). Garantiza que el gradiente fluya directamente hacia atrás durante el entrenamiento y previene la degradación de la señal en modelos profundos.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">X_*</span>: Tensor resultante enriquecido con patrones temporales univariantes.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Dimensión y ventaja -->
+              <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
+                <span class="font-mono" style="background: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 3px 8px; border-radius: 6px;">
+                  Dimensión: (B, T, C) → (B, T, C)
+                </span>
+                <span style="background: #18181b; color: #f4f4f5; padding: 3px 8px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Complejidad lineal O(T) frente a O(T²) de Transformers
+                </span>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- FÓRMULA 2: FEATURE-MIXING                                      -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">02</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+                  <span style="font-size: 13.5px; font-weight: 800; color: #09090b; letter-spacing: -0.01em;">Mezclado de Variables (Feature-Mixing)</span>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #f4f4f5; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Eje de Canales • Inter-Serie</span>
+              </div>
+
+              <!-- Ecuación KaTeX -->
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; font-size: 16px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center; color: #09090b;">
+                $$\mathbf{Y} = \mathbf{X}_{*} + \text{MLP}_{\text{feat}}\big(\text{LayerNorm}(\mathbf{X}_{*})\big)$$
+              </div>
+
+              <!-- Intuición -->
+              <div style="background: #f4f4f5; border-left: 3px solid #18181b; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: #27272a; line-height: 1.55;">
+                <span style="font-weight: 800; color: #09090b; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Propósito:
+                </span> Conecta los canales simultáneamente para cada instante de tiempo. Aprende leyes físicas y correlaciones entre variables (p. ej. "alta humedad + baja presión presagian lluvia inminente").
+              </div>
+
+              <!-- Desglose Término a Término -->
+              <div style="margin-top: 10px; font-size: 12px; color: #3f3f46; line-height: 1.6;">
+                <strong style="color: #09090b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Desglose de variables y operadores:
+                </strong>
+                <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">X_*</span>: Tensor intermedio que ya incorpora el contexto dinámico temporal extraído en el paso anterior.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">LayerNorm(X_*)</span>: Estabiliza numéricamente las representaciones intermedias generadas por Time-Mixing antes de cruzarlas entre los diferentes sensores.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">MLP_caract</span>: Perceptrón multicapa denso aplicado a lo largo del eje de características <span class="font-mono font-bold">C</span>: <span class="font-mono font-bold">FC(C → d_c) → ReLU / GELU → Dropout → FC(d_c → C)</span>. Sus pesos se comparten en todos los instantes de tiempo <span class="font-mono font-bold">T</span>, aprendiendo relaciones multivariables invariantes en el tiempo.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">+ X_*</span> (Segunda Conexión Residual): Permite a la red decidir mediante aprendizaje residual cuánta información multivariable mezclar y cuánta mantener de la señal temporal pura.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">Y</span>: Salida completa del bloque TSMixer, con conocimiento temporal e inter-variable integrado.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Dimensión y ventaja -->
+              <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
+                <span class="font-mono" style="background: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 3px 8px; border-radius: 6px;">
+                  Dimensión: (B, T, C) → (B, T, C)
+                </span>
+                <span style="background: #18181b; color: #f4f4f5; padding: 3px 8px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Desacopla la complejidad cruzada en dos pasos modulares ortogonales
+                </span>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- FÓRMULA 3: TEMPORAL PROJECTION                                 -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">03</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                  <span style="font-size: 13.5px; font-weight: 800; color: #09090b; letter-spacing: -0.01em;">Capa de Proyección Temporal (Temporal Projection)</span>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #f4f4f5; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Mapeo Directo • Horizonte L → H</span>
+              </div>
+
+              <!-- Ecuación KaTeX -->
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; font-size: 16px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center; color: #09090b;">
+                $$\hat{\mathbf{Y}} = \Big( \mathbf{W}_{\text{out}} \mathbf{Y}^\top + \mathbf{b}_{\text{out}} \Big)^\top \quad \text{donde} \quad \mathbf{W}_{\text{out}} \in \mathbb{R}^{H \times L}, \quad \mathbf{b}_{\text{out}} \in \mathbb{R}^H$$
+              </div>
+
+              <!-- Intuición -->
+              <div style="background: #f4f4f5; border-left: 3px solid #18181b; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: #27272a; line-height: 1.55;">
+                <span style="font-weight: 800; color: #09090b; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Propósito:
+                </span> Estira y proyecta los <span class="font-mono font-bold">L</span> pasos históricos observados hacia los <span class="font-mono font-bold">H</span> pasos futuros de pronóstico de un solo golpe, eliminando la necesidad de predicciones iterativas paso a paso.
+              </div>
+
+              <!-- Desglose Término a Término -->
+              <div style="margin-top: 10px; font-size: 12px; color: #3f3f46; line-height: 1.6;">
+                <strong style="color: #09090b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Desglose de variables y operadores:
+                </strong>
+                <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">Yᵀ</span>: Transpone el tensor de salida procesado por los bloques TSMixer: <span class="font-mono font-bold">(B, L, C) → (B, C, L)</span> para que la dimensión histórica <span class="font-mono font-bold">L</span> coincida con la entrada del operador lineal.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">W_out</span>: Matriz densa de pesos aprendibles de dimensión <span class="font-mono font-bold">H × L</span>. Cada fila define una combinación lineal de toda la ventana histórica para generar exactamente el valor predicho en el paso futuro <span class="font-mono font-bold">h ∈ {1, …, H}</span>.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">b_out</span>: Vector de sesgo de tamaño <span class="font-mono font-bold">H</span> que ajusta el nivel base (media o tendencia de fondo) del pronóstico proyectado.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">(·)ᵀ</span> (Transposición de Salida): Devuelve el tensor resultante a la forma canónica de pronóstico: <span class="font-mono font-bold">(B, C, H) → (B, H, C)</span>.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">Ŷ</span>: Tensor final de predicción multivariante para los <span class="font-mono font-bold">H</span> horizontes temporales futuros y <span class="font-mono font-bold">C</span> variables.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Dimensión y ventaja -->
+              <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
+                <span class="font-mono" style="background: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 3px 8px; border-radius: 6px;">
+                  Dimensión: (B, L, C) → (B, H, C)
+                </span>
+                <span style="background: #18181b; color: #f4f4f5; padding: 3px 8px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Evita el error acumulativo (error drift) de los modelos autorregresivos
+                </span>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- FÓRMULA 4: CAPA LINEAL (C, H)                                  -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">04</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                  <span style="font-size: 13.5px; font-weight: 800; color: #09090b; letter-spacing: -0.01em;">Capa Lineal de Canal (Linear C, H)</span>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #f4f4f5; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Proyección de Canales</span>
+              </div>
+
+              <!-- Ecuación KaTeX -->
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; font-size: 16px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center; color: #09090b;">
+                $$\mathbf{Z} = \text{Linear}_{(C, H)}(\mathbf{X}) \quad \Longleftrightarrow \quad \mathbf{Z}_{b, c, :} = \mathbf{W}_c \cdot \mathbf{X}_{b, c, :} + \mathbf{b}_c$$
+              </div>
+
+              <!-- Intuición -->
+              <div style="background: #f4f4f5; border-left: 3px solid #18181b; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: #27272a; line-height: 1.55;">
+                <span style="font-weight: 800; color: #09090b; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Propósito:
+                </span> Ajusta individualmente la proyección temporal para cada uno de los <span class="font-mono font-bold">C</span> canales, reconociendo que cada variable (temperatura, lluvia, demanda eléctrica) tiene diferentes tasas de cambio temporal.
+              </div>
+
+              <!-- Desglose Término a Término -->
+              <div style="margin-top: 10px; font-size: 12px; color: #3f3f46; line-height: 1.6;">
+                <strong style="color: #09090b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Desglose de variables y operadores:
+                </strong>
+                <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">X[canal]</span>: Vector que contiene la serie temporal de <span class="font-mono font-bold">T</span> pasos del canal <span class="font-mono font-bold">c</span> para la muestra <span class="font-mono font-bold">b</span>.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">W_c</span>: Matriz de transformación lineal asignada a mapear la historia de longitud <span class="font-mono font-bold">T</span> al horizonte <span class="font-mono font-bold">H</span> (tamaño <span class="font-mono">H × T</span>) para ese canal en particular.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">b_c</span>: Término de sesgo independiente que retiene la media propia del canal.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">Z</span>: Tensor proyectado por canal a dimensión <span class="font-mono font-bold">(B, C, H)</span>, listo para ser enriquecido por el módulo de auto-atención superior.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Dimensión y ventaja -->
+              <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
+                <span class="font-mono" style="background: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 3px 8px; border-radius: 6px;">
+                  Dimensión: (B, C, T) → (B, C, H)
+                </span>
+                <span style="background: #18181b; color: #f4f4f5; padding: 3px 8px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Flexibilidad de escala independiente para cada variable
+                </span>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- FÓRMULA 5: AUTO-ATENCIÓN MULTI-CABEZAL                         -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">05</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+                  <span style="font-size: 13.5px; font-weight: 800; color: #09090b; letter-spacing: -0.01em;">Auto-Atención Multi-Cabezal (Multi-Head Attention)</span>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #f4f4f5; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Correlaciones Globales</span>
+              </div>
+
+              <!-- Ecuación KaTeX -->
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; font-size: 16px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center; color: #09090b;">
+                $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$$
+              </div>
+
+              <!-- Intuición -->
+              <div style="background: #f4f4f5; border-left: 3px solid #18181b; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: #27272a; line-height: 1.55;">
+                <span style="font-weight: 800; color: #09090b; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Propósito:
+                </span> Mide el grado de afinidad dinámica entre cualquier instante temporal del pasado y el horizonte futuro. Si un evento atípico hace 5 días se asemeja al momento actual, la atención le asigna mayor peso probabilístico.
+              </div>
+
+              <!-- Desglose Término a Término -->
+              <div style="margin-top: 10px; font-size: 12px; color: #3f3f46; line-height: 1.6;">
+                <strong style="color: #09090b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Desglose de variables y operadores:
+                </strong>
+                <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">Q</span>: Proyección lineal de consulta (<em>Query</em> = lo que buscamos estimar: <span class="font-mono">Q = X · W^Q</span>).
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">K</span>: Proyección lineal de claves de contexto (<em>Key</em> = catálogo histórico disponible: <span class="font-mono">K = X · W^K</span>).
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">QKᵀ</span>: Matriz de afinidad que cuantifica mediante producto escalar la similitud entre cada consulta y todas las claves del pasado.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">1 / √d_k</span>: Factor de escala dimensional (<span class="font-mono font-bold">d_k</span> = dimensión del cabezal) que previene saturación en el softmax y estabiliza gradientes.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">softmax(·)</span>: Función exponencial normalizada que transforma las afinidades en probabilidades que suman exactamente 1.0 (100% de atención).
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">V</span>: Valores reales de las señales de la serie temporal (<span class="font-mono">V = X · W^V</span>), ponderados directamente por los coeficientes de atención.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Dimensión y ventaja -->
+              <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
+                <span class="font-mono" style="background: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 3px 8px; border-radius: 6px;">
+                  Dimensión: (B, H, d_k)
+                </span>
+                <span style="background: #18181b; color: #f4f4f5; padding: 3px 8px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Captura dependencias de largo alcance no acotadas por ventanas locales
+                </span>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- FÓRMULA 6: FFN DE PROYECCIÓN                                   -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">06</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                  <span style="font-size: 13.5px; font-weight: 800; color: #09090b; letter-spacing: -0.01em;">Red Densa de Alimentación Hacia Adelante (FFN)</span>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #f4f4f5; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Refinamiento No Lineal</span>
+              </div>
+
+              <!-- Ecuación KaTeX -->
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; font-size: 16px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center; color: #09090b;">
+                $$\text{FFN}(\mathbf{x}) = \mathbf{W}_2 \cdot \text{ReLU}(\mathbf{W}_1 \cdot \mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2$$
+              </div>
+
+              <!-- Intuición -->
+              <div style="background: #f4f4f5; border-left: 3px solid #18181b; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: #27272a; line-height: 1.55;">
+                <span style="font-weight: 800; color: #09090b; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Propósito:
+                </span> Aplica una expansión dimensional intermedia con activación no lineal para filtrar ruido y sintetizar patrones complejos antes de emitir los valores numéricos finales.
+              </div>
+
+              <!-- Desglose Término a Término -->
+              <div style="margin-top: 10px; font-size: 12px; color: #3f3f46; line-height: 1.6;">
+                <strong style="color: #09090b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Desglose de variables y operadores:
+                </strong>
+                <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">x</span>: Vector de características intermedias proveniente de la subcapa previa.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">W₁, b₁</span>: Pesos y sesgo de la primera proyección lineal que expande la señal a un espacio ampliado (<span class="font-mono">W₁ ∈ ℝ^(d_ff × d_model), b₁ ∈ ℝ^(d_ff)</span>, típicamente con factor de expansión <span class="font-mono font-bold">d_ff = 2× o 4× d_model</span>).
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">ReLU(·)</span>: Función de activación no lineal <span class="font-mono font-bold">max(0, z)</span> que introduce curvatura matemática y elimina componentes negativas irrelevantes, promoviendo representaciones dispersas y eficientes.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">W₂, b₂</span>: Pesos y sesgo de la segunda proyección lineal (<span class="font-mono">W₂ ∈ ℝ^(d_model × d_ff), b₂ ∈ ℝ^(d_model)</span>) que comprime de nuevo el espacio al tamaño original del modelo.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Dimensión y ventaja -->
+              <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
+                <span class="font-mono" style="background: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 3px 8px; border-radius: 6px;">
+                  Dimensión: (B, H, C)
+                </span>
+                <span style="background: #18181b; color: #f4f4f5; padding: 3px 8px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Aumenta la capacidad de aproximación universal del sistema
+                </span>
+              </div>
+            </div>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- FÓRMULA 7: ADD & NORM (CONEXIÓN RESIDUAL + LAYERNORM)           -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">07</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                  <span style="font-size: 13.5px; font-weight: 800; color: #09090b; letter-spacing: -0.01em;">Añadir y Normalizar (Add & LayerNorm)</span>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #09090b; color: #ffffff; padding: 2px 8px; border-radius: 4px; text-transform: uppercase;">Estabilización de Gradientes</span>
+              </div>
+
+              <!-- Ecuación KaTeX -->
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; font-size: 16px; padding: 12px 14px; margin: 10px 0; overflow-x: auto; text-align: center; color: #09090b;">
+                $$\text{Salida} = \text{LayerNorm}\Big(\mathbf{x} + \text{Subcapa}(\mathbf{x})\Big) = \frac{(\mathbf{x} + \Delta\mathbf{x}) - \mu}{\sqrt{\sigma^2 + \epsilon}} \odot \boldsymbol{\gamma} + \boldsymbol{\beta}$$
+              </div>
+
+              <!-- Intuición -->
+              <div style="background: #f4f4f5; border-left: 3px solid #18181b; border-radius: 0 8px 8px 0; padding: 10px 14px; margin: 10px 0; font-size: 12px; color: #27272a; line-height: 1.55;">
+                <span style="font-weight: 800; color: #09090b; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                  Propósito:
+                </span> Asegura que el modelo no sufra el problema del gradiente desvaneciente o explosivo. Cada bloque solo necesita aprender el residuo de corrección $\Delta\mathbf{x}$, haciendo que el entrenamiento converja mucho más rápido.
+              </div>
+
+              <!-- Desglose Término a Término -->
+              <div style="margin-top: 10px; font-size: 12px; color: #3f3f46; line-height: 1.6;">
+                <strong style="color: #09090b; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  Desglose de variables y operadores:
+                </strong>
+                <ul style="padding-left: 18px; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">x</span>: Entrada original que pasa por el camino directo de identidad (<em>Skip Connection</em>).
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">Subcapa(x) = Δx</span>: El refinamiento o cambio marginal calculado por la subcapa correspondiente (Time-Mixing, Feature-Mixing, o Atención).
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">LayerNorm(·)</span>: Normalización por capas aplicada a la suma residual para estabilizar la distribución de las activaciones.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">μ y σ²</span>: Media y varianza muestral calculadas a través de la dimensión de las características para cada secuencia individual en el lote.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">ε ≈ 10⁻⁵</span>: Constante infinitesimal de suavizado numérico añadida para prevenir divisiones indeterminadas por cero cuando la varianza es nula.
+                  </li>
+                  <li>
+                    <span class="font-mono" style="background: #f4f4f5; color: #09090b; border: 1px solid #d4d4d8; font-weight: 700; padding: 1px 6px; border-radius: 4px; font-size: 11.5px;">γ, β</span>: Vectores de parámetros aprendibles de escala y desplazamiento que permiten a la red restaurar la expresividad si la normalización estricta resulta limitante.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Dimensión y ventaja -->
+              <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
+                <span class="font-mono" style="background: #f4f4f5; border: 1px solid #e4e4e7; color: #52525b; padding: 3px 8px; border-radius: 6px;">
+                  Dimensión: Invariante a la entrada
+                </span>
+                <span style="background: #18181b; color: #f4f4f5; padding: 3px 8px; border-radius: 6px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                  Permite apilar decenas de capas profundas sin divergencia numérica
+                </span>
+              </div>
+            </div>
+
+            <!-- Glosario de símbolos -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 16px;">
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; padding: 10px 14px; font-size: 11.5px; color: #3f3f46;">
+                <strong class="font-mono" style="color: #09090b;">(·)ᵀ</strong>: Transponer (girar 90°) para procesar la historia temporal.
+              </div>
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; padding: 10px 14px; font-size: 11.5px; color: #3f3f46;">
+                <strong class="font-mono" style="color: #09090b;">+ X</strong>: Salto residual para conservar la información pasada intacta.
+              </div>
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; padding: 10px 14px; font-size: 11.5px; color: #3f3f46;">
+                <strong class="font-mono" style="color: #09090b;">LayerNorm</strong>: Calibrar sensores heterogéneos a media 0 y varianza 1.
+              </div>
+              <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 10px; padding: 10px 14px; font-size: 11.5px; color: #3f3f46;">
+                <strong class="font-mono" style="color: #09090b;">W_out</strong>: Proyección directa del pasado de longitud L al horizonte H.
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Desglose Detallado de Fases (1: Entrada, 2: Bloque Central, 3: Salida) -->
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            
+            <!-- Fase 1: Entrada -->
+            <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 14px; padding: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">01</span>
+                  <h4 style="font-size: 13.5px; font-weight: 800; color: #09090b; margin: 0;">FASE 1: ENTRADA HISTÓRICA (ABAJO)</h4>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #ffffff; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px;">Tensor Inicial</span>
+              </div>
+              <p style="font-size: 12px; color: #52525b; margin-bottom: 10px; line-height: 1.5;">
+                Entra una matriz con los datos históricos de lookback. Su forma de tensor es:
+              </p>
+              <div class="font-mono" style="background: #ffffff; color: #09090b; border: 1px solid #e4e4e7; border-radius: 8px; padding: 6px 12px; font-size: 12px; font-weight: 800; display: inline-block;">
+                [Lote, Tiempo, Variables] → (Batch, T, C)
+              </div>
+            </div>
+
+            <!-- Fase 2: Bloque Central -->
+            <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 14px; padding: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">02</span>
+                  <h4 style="font-size: 13.5px; font-weight: 800; color: #09090b; margin: 0;">FASE 2: BLOQUE CENTRAL TSMIXER (ITERATIVO Nx)</h4>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #ffffff; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px;">Núcleo MLP</span>
+              </div>
+              <p style="font-size: 12px; color: #52525b; margin-bottom: 12px; line-height: 1.5;">
+                El bloque TSMixer se repite secuencialmente realizando dos mezclas ortogonales con conexiones residuales:
+              </p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
+                <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 12px;">
+                  <strong style="color: #09090b; font-size: 12px; display: block; margin-bottom: 4px;">A. Time-Mixing (Temporal):</strong>
+                  <span style="font-size: 11.5px; color: #52525b; line-height: 1.45; display: block;">
+                    Reorganiza para procesar el tiempo con una pequeña red neuronal MLP univariante y suma la entrada original mediante skip connection.
+                  </span>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #e4e4e7; border-radius: 10px; padding: 12px;">
+                  <strong style="color: #09090b; font-size: 12px; display: block; margin-bottom: 4px;">B. Feature-Mixing (Canales):</strong>
+                  <span style="font-size: 11.5px; color: #52525b; line-height: 1.45; display: block;">
+                    Mantiene la dimensión temporal y aprende relaciones cruzadas entre sensores para cada instante de tiempo con otra red MLP.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fase 3: Salida -->
+            <div style="background: #fafafa; border: 1px solid #e4e4e7; border-radius: 14px; padding: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="font-mono" style="font-size: 11px; font-weight: 800; background: #09090b; color: #ffffff; padding: 2px 7px; border-radius: 4px;">03</span>
+                  <h4 style="font-size: 13.5px; font-weight: 800; color: #09090b; margin: 0;">FASE 3: SALIDA Y PREDICCIÓN FINAL (ARRIBA)</h4>
+                </div>
+                <span style="font-size: 10px; font-weight: 700; background: #ffffff; color: #52525b; border: 1px solid #e4e4e7; padding: 2px 8px; border-radius: 4px;">Horizonte H</span>
+              </div>
+              <p style="font-size: 12px; color: #52525b; margin-bottom: 10px; line-height: 1.5;">
+                La proyección temporal y el cabezal de atención estiran los datos para emitir directamente las predicciones multivariantes:
+              </p>
+              <div class="font-mono" style="background: #ffffff; color: #09090b; border: 1px solid #e4e4e7; border-radius: 8px; padding: 6px 12px; font-size: 12px; font-weight: 800; display: inline-block;">
+                [Lote, Tiempo Futuro, Variables] → (Batch, H, C)
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ───────────────────────────────────────────────────────────── -->
+      <!-- TARJETA 3: VIDEO DEMOSTRATIVO HD                              -->
+      <!-- ───────────────────────────────────────────────────────────── -->
+      <article class="collapsible-card video-card" id="card-video">
+        <button class="collapsible-header-btn" onclick="toggleSection('video')" aria-expanded="false" aria-controls="content-video">
+          <div class="collapsible-header-left">
+            <div class="section-icon-badge">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+              </svg>
+            </div>
+            <div>
+              <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #71717a; display: block;">Multimedia Oficial</span>
+              <h3 style="font-size: 15px; font-weight: 900; color: #09090b; margin-top: 1px;">3. Video Demostrativo — Arquitectura TSMixer</h3>
+              <p style="font-size: 11.5px; color: #71717a; margin-top: 2px;">Reproductor personalizado en alta definición con controles avanzados, velocidad y pantalla completa</p>
+            </div>
+          </div>
+          <div class="collapsible-header-right">
+            <span class="status-pill-badge pill-hidden" id="pill-video">
+              <span>○</span> Oculto — Clic para expandir
+            </span>
+            <div class="chevron-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </button>
+
+        <div class="collapsible-content" id="content-video" style="display: none; padding: 20px; background: #09090b; border-radius: 0 0 18px 18px;">
+          <section class="video-showcase-card" id="video-section" style="margin-top: 0; margin-bottom: 0; padding: 0; background: transparent; border: none; box-shadow: none;">
+            <div class="video-showcase-header">
+              <div class="video-header-info">
+                <div class="video-icon-badge">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="23 7 16 12 23 17 23 7"/>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="video-title">Video Demostrativo — Arquitectura TSMixer</h2>
+                  <p class="video-subtitle">Explicación visual en alta definición del funcionamiento, módulos y flujo de tensores</p>
+                </div>
+              </div>
+
+              <div class="video-header-actions">
+                <span style="font-size: 11px; font-weight: 700; background: #18181b; color: #d4d4d8; padding: 4px 10px; border-radius: 6px; border: 1px solid #27272a;">
+                  ● MP4 HD 1080p
+                </span>
+                <button class="btn-fullscreen-top" onclick="triggerFullscreen()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                  </svg>
+                  Ver en Pantalla Completa
+                </button>
+              </div>
+            </div>
 
       <!-- Reproductor personalizado -->
       <div class="video-player-wrapper" id="video-wrapper">
@@ -2542,72 +3063,10 @@
       </div>
 
     </section>
-
-    <!-- ───────────────────────────────────────────────────────────────── -->
-    <!-- FOOTER / LEYENDA TÉCNICA                                         -->
-    <!-- ───────────────────────────────────────────────────────────────── -->
-    <footer class="diagram-footer">
-      <div class="footer-grid">
-        
-        <!-- 1. Time-Mixing -->
-        <div class="footer-card" onclick="filterDiagram('core')">
-          <div class="footer-card-header">
-            <span class="footer-dot" style="background: #0284c7;"></span>
-            <h6 class="footer-title">1. Time-Mixing</h6>
-          </div>
-          <p class="footer-desc">
-            Aplica MLPs compartidos sobre el eje temporal de forma univariante para cada canal individualmente, extrayendo dinámicas de frecuencia sin mezclar variables.
-          </p>
         </div>
+      </article>
 
-        <!-- 2. Feature-Mixing -->
-        <div class="footer-card" onclick="filterDiagram('core')">
-          <div class="footer-card-header">
-            <span class="footer-dot" style="background: #d97706;"></span>
-            <h6 class="footer-title">2. Feature-Mixing</h6>
-          </div>
-          <p class="footer-desc">
-            Aplica capas densas cruzando las variables en cada paso de tiempo, descubriendo dependencias interactivas complejas entre las diferentes series del sistema.
-          </p>
-        </div>
-
-        <!-- 3. Proyección Temporal -->
-        <div class="footer-card" onclick="filterDiagram('core')">
-          <div class="footer-card-header">
-            <span class="footer-dot" style="background: #7c3aed;"></span>
-            <h6 class="footer-title">3. Proyección Temporal</h6>
-          </div>
-          <p class="footer-desc">
-            Mapea directamente la longitud histórica <span class="font-mono font-bold" style="color: #2563eb;">L</span> al horizonte de predicción <span class="font-mono font-bold" style="color: #059669;">H</span> de forma lineal y ultra rápida.
-          </p>
-        </div>
-
-        <!-- 4. Atención + FFN -->
-        <div class="footer-card" onclick="filterDiagram('head')">
-          <div class="footer-card-header">
-            <span class="footer-dot" style="background: #ea580c;"></span>
-            <h6 class="footer-title">4. Auto-Atención + FFN</h6>
-          </div>
-          <p class="footer-desc">
-            Pondera selectivamente momentos clave del pasado con atención multi-cabezal, enriqueciendo la proyección antes de emitir el pronóstico multivariante final.
-          </p>
-        </div>
-
-      </div>
-
-      <!-- Barra de Tensores y Shapes -->
-      <div class="tensor-bar">
-        <div style="display: flex; gap: 18px; flex-wrap: wrap;">
-          <span><strong>Batch</strong>: Lote de muestras</span>
-          <span><strong>T (o L)</strong>: Pasos de tiempo pasados</span>
-          <span><strong>C</strong>: Número de variables / canales</span>
-          <span><strong>H</strong>: Pasos predichos al horizonte</span>
-        </div>
-        <span style="font-family: 'Inter', sans-serif; font-weight: 800; color: #065f46; background: #ecfdf5; padding: 4px 10px; border-radius: 9999px; border: 1px solid #a7f3d0;">
-          ✓ TSMixer Architecture
-        </span>
-      </div>
-    </footer>
+    </section>
 
   </main>
 
@@ -2823,18 +3282,144 @@
     const iconVolMute = document.getElementById('icon-vol-mute');
     const btnSpeed = document.getElementById('btn-speed');
 
-    function scrollToVideo() {
-      const el = document.getElementById('video-section');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+    // ==========================================================================
+    // LÓGICA DE SECCIONES EXPANDIBLES / COLAPSABLES (ABAJO DEL DIAGRAMA)
+    // ==========================================================================
+    const sectionConfig = {
+      analogia: { name: 'Analogía' },
+      formulas: { name: 'Fórmulas' },
+      video: { name: 'Video' }
+    };
+
+    function toggleSection(name) {
+      const content = document.getElementById('content-' + name);
+      if (!content) return;
+      const isHidden = content.style.display === 'none' || getComputedStyle(content).display === 'none';
+      if (isHidden) {
+        expandSection(name);
+      } else {
+        collapseSection(name);
       }
     }
 
-    function scrollToFormulas() {
-      const el = document.getElementById('formulas-section');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+    function expandSection(name) {
+      const card = document.getElementById('card-' + name);
+      const content = document.getElementById('content-' + name);
+      const pill = document.getElementById('pill-' + name);
+      const btn = document.getElementById('btn-hub-' + name);
+      const label = document.getElementById('label-hub-' + name);
+
+      if (!content || !card) return;
+
+      content.style.display = 'block';
+      card.classList.add('is-open');
+
+      if (pill) {
+        pill.innerHTML = '<span>●</span> Visible';
+        pill.classList.remove('pill-hidden');
+        pill.classList.add('pill-visible');
       }
+      if (btn) {
+        btn.classList.add('active');
+      }
+      if (label && sectionConfig[name]) {
+        label.textContent = 'Ocultar ' + sectionConfig[name].name;
+      }
+
+      // Si se abre fórmulas, asegurar renderizado matemático nítido
+      if (name === 'formulas' && window.renderMathInElement) {
+        renderMathInElement(content, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+
+      updateToggleAllBtn();
+    }
+
+    function collapseSection(name) {
+      const card = document.getElementById('card-' + name);
+      const content = document.getElementById('content-' + name);
+      const pill = document.getElementById('pill-' + name);
+      const btn = document.getElementById('btn-hub-' + name);
+      const label = document.getElementById('label-hub-' + name);
+
+      if (!content || !card) return;
+
+      content.style.display = 'none';
+      card.classList.remove('is-open');
+
+      if (pill) {
+        pill.innerHTML = '<span>○</span> Oculto — Clic para expandir';
+        pill.classList.remove('pill-visible');
+        pill.classList.add('pill-hidden');
+      }
+      if (btn) {
+        btn.classList.remove('active');
+      }
+      if (label && sectionConfig[name]) {
+        label.textContent = 'Mostrar ' + sectionConfig[name].name;
+      }
+
+      updateToggleAllBtn();
+    }
+
+    function toggleAllSections() {
+      const sections = ['analogia', 'formulas', 'video'];
+      const anyHidden = sections.some(name => {
+        const content = document.getElementById('content-' + name);
+        return !content || content.style.display === 'none' || getComputedStyle(content).display === 'none';
+      });
+
+      sections.forEach(name => {
+        if (anyHidden) {
+          expandSection(name);
+        } else {
+          collapseSection(name);
+        }
+      });
+
+      updateToggleAllBtn();
+    }
+
+    function updateToggleAllBtn() {
+      const labelAll = document.getElementById('label-hub-all');
+      const btnAll = document.getElementById('btn-hub-all');
+      if (!btnAll || !labelAll) return;
+
+      const sections = ['analogia', 'formulas', 'video'];
+      const allOpen = sections.every(name => {
+        const content = document.getElementById('content-' + name);
+        return content && content.style.display !== 'none' && getComputedStyle(content).display !== 'none';
+      });
+
+      if (allOpen) {
+        labelAll.textContent = 'Colapsar Todo';
+        btnAll.classList.add('active');
+      } else {
+        labelAll.textContent = 'Expandir Todo';
+        btnAll.classList.remove('active');
+      }
+    }
+
+    function toggleAndScroll(name) {
+      expandSection(name);
+      setTimeout(() => {
+        const card = document.getElementById('card-' + name);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    }
+
+    function scrollToVideo() {
+      toggleAndScroll('video');
+    }
+
+    function scrollToFormulas() {
+      toggleAndScroll('formulas');
     }
 
     function togglePlay() {
